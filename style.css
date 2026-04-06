@@ -1,0 +1,23 @@
+/* Código del Tooltip extraido de https://www.w3schools.com/css/css_tooltip.asp */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 2px dotted #504747d0; 
+  cursor: pointer;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 256px;
+  background-color: #504747d0;
+  color: #E1C8C8;
+  text-align: justify;
+  padding: 16px;
+  border-radius: 16px;
+  position: absolute;
+  z-index: 1; 
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

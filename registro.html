@@ -6,7 +6,56 @@
         </style>
     </head>
     <body>
-        <h1>registro</h1>
+        <h1>Registro</h1>
+        <form>
+            <h2>Información personal</h2>
+                <label for="nombre">Nombre:</label>
+                <input name="nombre" id="nombre" required />
+                <br>
+                <label for="email">Correo institucional:</label><input name="email" id="email" required />
+                <br>
+                <label for="rol">¿Usted es un?:</label>
+                <select name="rol" id="rol" required>
+                    <option value="">- Elja un elemento -</option>
+                    <option value="pregrado">Estudiante de pregrado</option>
+                    <option value="postgrado">Estudiante de postgrado</option>
+                    <option value="academico">Académico</option>
+                    <option value="Funcionario">Funcionario</option>
+                </select>
+            <!--Agregar "año de ingreso" en caso que se trate de un estudiante -->
+            <h2>Información sobre la actividad</h2>
+                <label for="nombre-actividad">Nombre de la actividad:</label>
+                <input name="nombre-actividad" id="nombre-actividad" required />
+                <br>
+                <label for="tipo">Tipo de actividad:</label>
+                <select name="tipo" id="tipo" required>
+                    <option value="">- Elja un elemento -</option>
+                    <option value="deportiva">Deportiva</option>
+                    <option value="recreativa">Recreativa</option>
+                    <option value="artistica">Artística</option>
+                    <option value="social">Social</option>
+                    <option value="tecnológica">Tecnológica</option>
+                    <option value="otro">Otro</option>
+                </select>
+                <br>
+                <label for="fecha">Fecha de la actividad</label>
+                <input type="datetime-local" name="fecha" id="fecha" required>
+                <br>
+                <label for="horas">Duración de la actividad (en horas)</label>
+                <input type="number" name="horas" id="horas" required>
+                <br>
+                <label for="medios">Imagen o video relacionado con la habilidad</label>
+                <div class="tooltip">&#8505;&#65039;
+                    <span class="tooltiptext">Foto o video que se tomó de la actividad, puede ser una tomada por usted o un tercero</span>
+                </div>
+                <input type="file" name="medios" id="medios" required>
+                <br>
+                <label for="link">Enlace relacionado con la actividad</label>
+                <div class="tooltip">&#8505;&#65039;
+                    <span class="tooltiptext">Enlace al sitio o publicación desde el cual descubrió la actividad</span>
+                </div>
+                <input type="url" name="link" id="link" required>
+        </form>
         <script src="script.js"></script>
     </body>
 </html>
