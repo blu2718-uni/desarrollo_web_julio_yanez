@@ -7,6 +7,42 @@
     </head>
     <body>
         <h1>entradas</h1>
-        <script src="script.js"></script>
+        <label for="tipo">Filtrar por actividad:</label>
+        <select name="tipo" id="filtro-tipo" onchange="filtradoTabla()">
+          <option value="">Todos los tipos</option>
+          <option value="deportiva">Deportiva</option>
+          <option value="recreativa">Recreativa</option>
+          <option value="artistica">Artística</option>
+          <option value="social">Social</option>
+          <option value="tecnológica">Tecnológica</option>
+          <option value="otro">Otro</option>
+        </select>
+
+      <table id="entradas">
+        <tr class="header">
+          <th style="width:60%;">Nombre</th>
+          <th style="width:40%;">Correo</th>
+          <th style="width:40%;">Rol</th>
+          <th style="width:40%;">Actividad</th>
+          <th style="width:40%;">Nombre de la actividad</th>
+          <th style="width:40%;">Tipo de actividad</th>
+          <th style="width:40%;">Fecha de la actividad</th>
+          <th style="width:40%;">Duración de la actividad</th>
+          <th style="width:40%;">Enlace relacionado</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+
+      <script src="script.js"></script>
     </body>
 </html>
