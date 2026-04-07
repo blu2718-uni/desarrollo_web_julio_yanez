@@ -1,5 +1,5 @@
 const validarNombre = (nombre) => {
-    const regex = /[A-ZÁÉÍÓÚÑÜ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]{1,16}+\s[A-ZÁÉÍÓÚÑÜ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]{1,16}+\s[A-ZÁÉÍÓÚÑÜ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]{1,16}+/;
+    const regex = /[A-ZÁÉÍÓÚÑÜ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]{1,16}\s[A-ZÁÉÍÓÚÑÜ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]{1,16}\s[A-ZÁÉÍÓÚÑÜ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]{1,16}/;
     return regex.test(nombre)
 }
 
@@ -23,13 +23,7 @@ const validarNombreActividad = (nombreActividad) => {
 }
 
 const validarTipoActividad = (tipoActividad) => {
-    return ["deportiva", "recreativa", "artistica", "social", "tecnologia", "otro"].includes(tipoActividad)
-}
-
-const validarFechaActividad = (fechaActividad) => {
-    const regex = /(1[9]|2[0-9])[0-9][0-9]-(0[1-9]|1[12])-([0-2][0-9]|3[0-1])T(0[0-9]|1[0-2]):([0-5][0-9])/
-    
-    return regex.test(fechaActividad)
+    return ["deportiva", "recreativa", "artistica", "social", "tecnologica", "otro"].includes(tipoActividad)
 }
 
 const validarDuracionActividad = (duracionActividad) => {
@@ -37,9 +31,9 @@ const validarDuracionActividad = (duracionActividad) => {
 }
 
 const validarMedios = (medios) => {
-    if(medios.size === undefined){ return false }
-    if(medios.size > 5000000){ return false }
-    if(!["image/jpeg","image/png"].includes(medios.type)){ return false }
+    if(medios.files[0] === undefined){ return false }
+    if(medios.files[0].size > 5000000){ return false }
+    if(!["image/jpeg","image/png"].includes(medios.files[0].type)){ return false }
     
     return true
 }
@@ -59,7 +53,6 @@ const validarRegistro = (event) => {
     const rol = document.getElementById("rol");
     const nombreActividad = document.getElementById("nombre-actividad");
     const tipoActividad = document.getElementById("tipo");
-    const fecha = document.getElementById("fecha");
     const horas = document.getElementById("horas");
     const medios = document.getElementById("medios");
     const link = document.getElementById("link");
@@ -69,9 +62,8 @@ const validarRegistro = (event) => {
     if(!validarRol(rol.value)){ valid = false }
     if(!validarNombreActividad(nombreActividad.value.toString())){ valid = false }
     if(!validarTipoActividad(tipoActividad.value)){ valid = false }
-    if(!validarFechaActividad(fecha.value)){ valid = false }
     if(!validarDuracionActividad(parseInt(horas.value))){ valid = false }
-    if(!validarMedios(medios.files[0])){ valid = false }
+    if(!validarMedios(medios)){ valid = false }
     if(!validarEnlace(link.value.toString())){ valid = false }
 
     if(valid) {
