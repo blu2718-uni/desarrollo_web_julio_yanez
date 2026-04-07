@@ -56,7 +56,7 @@ const data = [
     "nombre-actividad": "Hackathon de Inteligencia Artificial",
     tipo: "Tecnológica",
     fecha: "2024-03-22T09:30",
-    horas: 12,
+    horas: 1,
     link: "https://dcc.uchile.cl/hackathon-ia"
   },
   {
@@ -330,7 +330,7 @@ const construirTabla = (pagina) => {
     rol.textContent = data[i]["rol"]
     actividadNombre.textContent = data[i]["nombre-actividad"]
     actividadTipo.textContent = data[i]["tipo"]
-    actividadFecha.textContent = Date(data[i]["fecha"]).toString()
+    actividadFecha.textContent = data[i]["fecha"].split("T")[0] +" a las "+data[i]["fecha"].split("T")[1]
     actividadDuracion.textContent = data[i]["horas"].toString()
     actividadEnlace.textContent =  data[i]["link"].toString()
     
@@ -396,58 +396,43 @@ const filtradoTabla = () => {
   }
 }
 
-const ordenarTabla = (indice) => {
-  let rows, switching, i, x, y, shouldSwitch, dir;
-  let switchcount = 0;
-  let table = document.getElementById("entradas-datos");
-  switching = true;
-  // Set the sorting direction to ascending:
-  dir = "asc";
-  /* Make a loop that will continue until
-  no switching has been done: */
-  while (switching) {
-    // Start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
-    for (i = 0; i < rows.length-1; i++) {
-      // Start by saying there should be no switching:
-      shouldSwitch = false;
-      /* Get the two elements you want to compare,
-      one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("th")[indice];
-      y = rows[i + 1].getElementsByTagName("th")[indice];
-      /* Check if the two rows should switch place,
-      based on the direction, asc or desc: */
-      if (dir == "asc") {
-        if (x.innerHTML.toUpperCase() > y.innerHTML.toUpperCase()) {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          // If so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      // Each time a switch is done, increase this count by 1:
-      switchcount ++;
+ascendente = true;
+ultimaColumnaOrdenada = -1;
+
+const ordenarTabla = (colIndex) => {
+    const cuerpo = document.getElementById("entradas-datos");
+    const filas = Array.from(cuerpo.rows);
+
+    if (colIndex == ultimaColumnaOrdenada) {
+      ascendente = !ascendente
     } else {
-      /* If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
+      ascendente = true;
+      ultimaColumnaOrdenada = colIndex;
     }
-  }
+
+    filas.sort((filaA, filaB) => {
+      const valorA = filaA.cells[colIndex].textContent;
+      const valorB = filaB.cells[colIndex].textContent;
+      let aCompararA, aCompararB, resultado
+
+      if (colIndex === 6) {
+        // Comparación numérica para las horas
+        aCompararA = +valorA
+        aCompararB = +valorB
+        resultado = ascendente ? aCompararA - aCompararB : aCompararB - aCompararA;
+        return resultado
+
+      } if (colIndex === 5) {
+        aCompararA = valorA.split(" a las ")[0]+"-"+valorA.split(" a las ")[1]
+        aCompararB = valorB.split(" a las ")[0]+"-"+valorB.split(" a las ")[1]
+        resultado = ascendente ? aCompararA.localeCompare(aCompararB) : aCompararB.localeCompare(aCompararA)
+        return resultado
+
+      } else {
+        let resultado = ascendente ? valorA.localeCompare(valorB) : valorB.localeCompare(valorA);
+        return resultado
+      }
+    });
+
+    filas.forEach(fila => cuerpo.appendChild(fila));
 }
