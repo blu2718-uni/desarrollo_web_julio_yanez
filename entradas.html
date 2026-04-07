@@ -1,33 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
-        <title></title>
+        <title>Entradas</title>
         <link rel="stylesheet" type="text/css" href="./style.css">
-        </style>
     </head>
     <body>
-        <h1>entradas</h1>
+      <h1>Entradas</h1>
 
-      <table id="entradas">
-        <thead id="entradas-encabezado">
-        <tr>
-          <th>Nombre</th>
-          <th>Correo</th>
-          <th>Rol</th>
-          <th>Nombre de la actividad</th>
-          <th>Tipo de actividad</th>
-          <th>Fecha de la actividad</th>
-          <th>Duración de la actividad</th>
-          <th>Enlace relacionado</th>
-        </tr>
-        </thead>
-        <tbody id="entradas-datos">
-
-        </tbody>
-      </table>
-
-      <label for="tipo">Filtrar por actividad:</label>
-      <select name="tipo" id="filtro-tipo" onchange="filtradoTabla()">
+      <label for="filtro-tipo">Filtrar por actividad:</label>
+      <select name="filtro-tipo" id="filtro-tipo" onchange="filtradoTabla()">
         <option value="">Todos los tipos</option>
         <option value="deportiva">Deportiva</option>
         <option value="recreativa">Recreativa</option>
@@ -38,6 +19,24 @@
       </select>
 
       <div id="paginas"></div>
+      
+      <table id="entradas">
+        <thead class="entradas-encabezado" id="entradas-encabezado">
+          <tr>
+            <th onclick="ordenarTabla(0)">Nombre</th>
+            <th onclick="ordenarTabla(1)">Correo</th>
+            <th onclick="ordenarTabla(2)">Rol</th>
+            <th onclick="ordenarTabla(3)">Nombre de la actividad</th>
+            <th onclick="ordenarTabla(4)">Tipo de actividad</th>
+            <th onclick="sortTable(5)">Fecha de la actividad</th>
+            <th onclick="sortTable(6)">Duración de la actividad</th>
+            <th>Enlace relacionado</th>
+          </tr>
+        </thead>
+        <tbody class="entradas-datos" id="entradas-datos">
+        </tbody>
+      </table>
+
       <script src="entradas.js"></script>
     </body>
 </html>
