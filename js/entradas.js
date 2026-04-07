@@ -303,7 +303,7 @@ const data = [
 
 // Código de paginado original extraido de https://www.geeksforgeeks.org/html/how-to-add-pagination-in-html-table/
 
-const filasPorPagina = 10;
+const filasPorPagina = 5;
 let paginaActual = 1;
 
 const construirTabla = (pagina) => {
@@ -330,9 +330,9 @@ const construirTabla = (pagina) => {
     rol.textContent = data[i]["rol"]
     actividadNombre.textContent = data[i]["nombre-actividad"]
     actividadTipo.textContent = data[i]["tipo"]
-    actividadFecha.textContent = data[i]["fecha"]
-    actividadDuracion.textContent = data[i]["horas"]
-    actividadEnlace.textContent =  data[i]["link"]
+    actividadFecha.textContent = Date(data[i]["fecha"]).toString()
+    actividadDuracion.textContent = data[i]["horas"].toString()
+    actividadEnlace.textContent =  data[i]["link"].toString()
     
     entrada.appendChild(nombre);
     entrada.appendChild(correo);
@@ -359,9 +359,10 @@ const actualizarTabla = (paginaActual) => {
     const selectorPagina = document.createElement("a");
     selectorPagina.href = "#"
     selectorPagina.innerText = i;
-    
+
     selectorPagina.onclick = function () {
       construirTabla(i);
+      filtradoTabla();
     };
     
     if (i === paginaActual) {
@@ -382,7 +383,6 @@ const filtradoTabla = () => {
   let filtro = input.value.toUpperCase();
   let tabla = document.getElementById("entradas-datos");
   let tr = tabla.getElementsByTagName("tr");
-
   for (let i = 0; i < tr.length; i++) {
     let td = tr[i].getElementsByTagName("th")[4];
     if (td) {
@@ -391,6 +391,62 @@ const filtradoTabla = () => {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+const ordenarTabla = (indice) => {
+  let rows, switching, i, x, y, shouldSwitch, dir;
+  let switchcount = 0;
+  let table = document.getElementById("entradas-datos");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc";
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 0; i < rows.length-1; i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("th")[indice];
+      y = rows[i + 1].getElementsByTagName("th")[indice];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toUpperCase() > y.innerHTML.toUpperCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
       }
     }
   }
