@@ -7,12 +7,13 @@
     <body>
         <h1>Registro</h1>
             <button type="button" id="a-index" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
-        <form>
+        <form id="registro">
             <h2>Información personal</h2>
                 <label for="nombre">Nombre:</label>
                 <input name="nombre" id="nombre" required>
                 <br>
-                <label for="email">Correo institucional:</label><input name="email" id="email" required>
+                <label for="email">Correo institucional:</label>
+                <input name="email" id="email" required>
                 <br>
                 <label for="rol">¿Usted es un?:</label>
                 <select name="rol" id="rol" required>
@@ -20,7 +21,7 @@
                     <option value="pregrado">Estudiante de pregrado</option>
                     <option value="postgrado">Estudiante de postgrado</option>
                     <option value="academico">Académico</option>
-                    <option value="Funcionario">Funcionario</option>
+                    <option value="funcionario">Funcionario</option>
                 </select>
             <!--Agregar "año de ingreso" en caso que se trate de un estudiante -->
             <h2>Información sobre la actividad</h2>
@@ -34,7 +35,7 @@
                     <option value="recreativa">Recreativa</option>
                     <option value="artistica">Artística</option>
                     <option value="social">Social</option>
-                    <option value="tecnológica">Tecnológica</option>
+                    <option value="tecnologica">Tecnológica</option>
                     <option value="otro">Otro</option>
                 </select>
                 <br>
@@ -56,7 +57,7 @@
                 </div>
                 <input type="url" name="link" id="link" required>
                 <br>
-                <button type="button" id="envio-actividad" onclick="validarRegistro()">Registrar actividad</button>
+                <button type="submit" id="envio-actividad" onclick="validarRegistro(event)">Registrar actividad</button>
         </form>
         <script src="js/registro.js"></script>
     </body>
