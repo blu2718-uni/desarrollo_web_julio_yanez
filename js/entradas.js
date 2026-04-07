@@ -311,20 +311,22 @@ const construirTabla = (pagina) => {
   const primeraFila = (pagina - 1) * filasPorPagina;
   const ultimaFila = primeraFila + filasPorPagina;
 
+  let entrada, nombre, correo, rol, actividadNombre, actividadTipo, actividadFecha, actividadDuracion, actividadEnlace
+  
   tabla.innerText = "";
 
   for (let i = primeraFila; i < ultimaFila; i++) {
-    let entrada = document.createElement("tr");
+    entrada = document.createElement("tr");
     
-    let nombre = document.createElement("th");
-    let correo = document.createElement("th");
-    let rol = document.createElement("th");
-    let actividadNombre = document.createElement("th");
-    let actividadTipo = document.createElement("th");
-    let actividadFecha = document.createElement("th");
-    let actividadDuracion = document.createElement("th");
-    let actividadEnlace = document.createElement("th");
-    
+    nombre = document.createElement("th");
+    correo = document.createElement("th");
+    rol = document.createElement("th");
+    actividadNombre = document.createElement("th");
+    actividadTipo = document.createElement("th");
+    actividadFecha = document.createElement("th");
+    actividadDuracion = document.createElement("th");
+    actividadEnlace = document.createElement("th");
+
     nombre.textContent = data[i]["nombre"]
     correo.textContent = data[i]["email"]
     rol.textContent = data[i]["rol"]
@@ -333,6 +335,10 @@ const construirTabla = (pagina) => {
     actividadFecha.textContent = data[i]["fecha"].split("T")[0] +" a las "+data[i]["fecha"].split("T")[1]
     actividadDuracion.textContent = data[i]["horas"].toString()
     actividadEnlace.textContent =  data[i]["link"].toString()
+    
+    const entradaId = "entrada-"+i 
+    entrada.setAttribute("id", entradaId)
+    entrada.onclick = function() { mostrarInfo(entradaId) }
     
     entrada.appendChild(nombre);
     entrada.appendChild(correo);
@@ -435,4 +441,59 @@ const ordenarTabla = (colIndex) => {
     });
 
     filas.forEach(fila => cuerpo.appendChild(fila));
+}
+
+const mostrarInfo = (id) => {
+  const info = document.getElementById("info-de-dato");
+  const indice = parseInt(id.split("-")[1])
+
+  info.innerHTML = ""
+  
+  const img = document.createElement("img")
+
+  img.src = "img/placeholder.jpg"
+  img.setAttribute("class", "dato-expandido-img")
+  
+  info.appendChild(img)
+
+  const dato = document.createElement("div")
+  dato.setAttribute("class", "dato-expandido-info")
+
+  const lista = document.createElement("ul")
+  lista.setAttribute("class", "dato-expandido-lista")
+  
+  const actividadNombre = document.createElement("h2");
+  const nombre = document.createElement("h3");
+  const correo = document.createElement("p");
+  const rol = document.createElement("li");
+  const actividadTipo = document.createElement("li");
+  const actividadFecha = document.createElement("li");
+  const actividadDuracion = document.createElement("li");
+  const actividadEnlace = document.createElement("p");
+  const enlace = document.createElement("a")
+
+  actividadNombre.textContent = data[indice]["nombre-actividad"];
+  nombre.textContent = "Registro de "+data[indice]["nombre"];
+  correo.textContent = data[indice]["email"];
+  rol.textContent = (data[indice]["rol"] === "Pregrado" || data[indice]["rol"] === "Postgrado") ? "Rol dentro de la universidad: Estudiante de "+data[indice]["rol"] : "Rol dentro de la universidad: "+data[indice]["rol"];
+  actividadTipo.textContent = "Actividad de tipo: "+data[indice]["tipo"];
+  actividadFecha.textContent = "Fecha de la actividad: "+Date(data[indice]["fecha"]).toString();
+  actividadDuracion.textContent = "Duarción en horas: "+data[indice]["horas"].toString()+" hrs";
+  actividadEnlace.innerHTML = enlace;
+  enlace.href = data[indice]["link"].toString();
+  enlace.textContent = "Enlace";
+  
+  actividadEnlace.appendChild(enlace);
+
+  dato.appendChild(actividadNombre);
+  dato.appendChild(nombre);
+  dato.appendChild(correo);
+  lista.appendChild(rol);
+  lista.appendChild(actividadTipo);
+  lista.appendChild(actividadFecha);
+  lista.appendChild(actividadDuracion);
+  dato.appendChild(lista)
+  dato.appendChild(actividadEnlace);
+
+  info.appendChild(dato);
 }
