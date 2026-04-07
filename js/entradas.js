@@ -448,14 +448,22 @@ const mostrarInfo = (id) => {
   const indice = parseInt(id.split("-")[1])
 
   info.innerHTML = ""
-  
+
+  const fig = document.createElement("figure")
+  const figDesc = document.createElement("figcaption")
   const img = document.createElement("img")
 
   img.src = "img/placeholder.jpg"
   img.setAttribute("class", "dato-expandido-img")
+  img.setAttribute("alt", "Imagen placeholder")
+  img.setAttribute("title", "Imagen de la acividad")
   
-  info.appendChild(img)
+  figDesc.textContent = "Imagen de la acividad"
 
+  fig.appendChild(img)
+  fig.appendChild(figDesc)
+  info.appendChild(fig)
+  
   const dato = document.createElement("div")
   dato.setAttribute("class", "dato-expandido-info")
 
