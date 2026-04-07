@@ -311,7 +311,7 @@ const construirTabla = (pagina) => {
   const primeraFila = (pagina - 1) * filasPorPagina;
   const ultimaFila = primeraFila + filasPorPagina;
 
-  let entrada, nombre, correo, rol, actividadNombre, actividadTipo, actividadFecha, actividadDuracion, actividadEnlace
+  let entrada, nombre, correo, rol, actividadNombre, actividadTipo, actividadFecha
   
   tabla.innerText = "";
 
@@ -324,8 +324,6 @@ const construirTabla = (pagina) => {
     actividadNombre = document.createElement("th");
     actividadTipo = document.createElement("th");
     actividadFecha = document.createElement("th");
-    actividadDuracion = document.createElement("th");
-    actividadEnlace = document.createElement("th");
 
     nombre.textContent = data[i]["nombre"]
     correo.textContent = data[i]["email"]
@@ -333,8 +331,6 @@ const construirTabla = (pagina) => {
     actividadNombre.textContent = data[i]["nombre-actividad"]
     actividadTipo.textContent = data[i]["tipo"]
     actividadFecha.textContent = data[i]["fecha"].split("T")[0] +" a las "+data[i]["fecha"].split("T")[1]
-    actividadDuracion.textContent = data[i]["horas"].toString()
-    actividadEnlace.textContent =  data[i]["link"].toString()
     
     const entradaId = "entrada-"+i 
     entrada.setAttribute("id", entradaId)
@@ -346,8 +342,7 @@ const construirTabla = (pagina) => {
     entrada.appendChild(actividadNombre);
     entrada.appendChild(actividadTipo);
     entrada.appendChild(actividadFecha);
-    entrada.appendChild(actividadDuracion);
-    entrada.appendChild(actividadEnlace);
+
     
     tabla.appendChild(entrada)
   }
@@ -463,7 +458,7 @@ const mostrarInfo = (id) => {
   fig.appendChild(img)
   fig.appendChild(figDesc)
   info.appendChild(fig)
-  
+
   const dato = document.createElement("div")
   dato.setAttribute("class", "dato-expandido-info")
 
