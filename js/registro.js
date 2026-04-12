@@ -1,3 +1,11 @@
+const params = new URLSearchParams(window.location.search);
+
+if (params.has("nombre")) {
+    document.getElementById("nombre").value = decodeURIComponent(params.get('nombre'));               
+    document.getElementById("email").value = decodeURIComponent(params.get('email'));
+    document.getElementById("rol").value = decodeURIComponent(params.get('rol'));
+}
+
 const validarNombre = (nombre) => {
     const regex = /[A-ZÁÉÍÓÚÑÜ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]{1,16}\s[A-ZÁÉÍÓÚÑÜ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]{1,16}\s[A-ZÁÉÍÓÚÑÜ]{1}[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]{1,16}/;
     return regex.test(nombre)
@@ -66,8 +74,11 @@ const validarRegistro = (event) => {
     if(!validarEnlace(link.value.toString())){ valid = false }
 
     if(valid) {
-        alert("Su entrada ha quedado registrada. Se le redirigirá a la página principal.")
-        window.location.href = "./index.html";
+        const nombreUsuarioClean = encodeURIComponent(nombreUsuario.value);
+        const emailClean = encodeURIComponent(email.value);
+        const rolClean = encodeURIComponent(rol.value);
+
+        window.location.href = `./confirmacion.html?nombre=${nombreUsuarioClean}&email=${emailClean}&rol=${rolClean}`;
     } else {
         alert("Entrada inválida")
     }
