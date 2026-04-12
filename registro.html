@@ -7,7 +7,7 @@
     <body>
         <h1 class="titulo" id="titulo-registro">Registro</h1>
             <button type="button" class="a-index-universal" id="a-index-por-registro" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
-        <form class="formulario" classid="registro">
+        <form class="formulario" id="registro">
             <h2>Información personal</h2>
                 <div class="pieza-formulario" id="datos-personales">
                     <label class="input-label" for="nombre">Nombre:</label>
@@ -30,7 +30,7 @@
                     <input class="input" name="nombre-actividad" id="nombre-actividad" required>
                     <label class="input-label" for="tipo">Tipo de actividad:</label>
 
-                    <select class="input-form" name="tipo" id="tipo" required>
+                    <select class="input-select" name="tipo" id="tipo" required>
                         <option value="">- Elja un elemento -</option>
                         <option value="deportiva">Deportiva</option>
                         <option value="recreativa">Recreativa</option>
@@ -57,7 +57,7 @@
                     </div>
                     <input class="input" type="url" name="link" id="link" required>
                 </div>
-                <button type="submit" id="envio-actividad" onclick="validarRegistro(event)">Registrar actividad</button>
+                <button type="submit" class="boton-submit" id="envio-actividad" onclick="validarRegistro(event)">Registrar actividad</button>
         </form>
         <script src="js/registro.js"></script>
     </body>
