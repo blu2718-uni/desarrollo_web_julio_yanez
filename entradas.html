@@ -5,10 +5,11 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-      <h1>Entradas</h1>
-        <button type="button" id="a-index-por-entradas" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
-      <label for="filtro-tipo"><h2>Filtrar por actividad:</h2></label>
-      <select name="filtro-tipo" id="filtro-tipo" onchange="filtradoTabla()">
+      <h1 class="titulo" id="titulo-entradas">Entradas</h1>
+        <button type="button" class="a-index-universal" id="a-index-por-entradas" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
+      <label class="input-label" for="filtro-tipo"><h2>Filtrar por actividad:</h2></label>
+      
+      <select class="input-select" name="filtro-tipo" id="filtro-tipo" onchange="filtradoTabla()">
         <option value="">Todos los tipos</option>
         <option value="deportiva">Deportiva</option>
         <option value="recreativa">Recreativa</option>
@@ -18,10 +19,10 @@
         <option value="otro">Otro</option>
       </select>
 
-      <div id="paginas"></div>
+      <div class="selecion-pagina" id="paginas"></div>
       
-      <table id="entradas">
-        <thead class="entradas-encabezado" id="entradas-encabezado">
+      <table class="tabla" id="entradas">
+        <thead class="encabezado-tablas" id="entradas-encabezado">
           <tr>
             <th onclick="ordenarTabla(0)">Nombre</th>
             <th onclick="ordenarTabla(1)">Correo</th>
@@ -31,10 +32,10 @@
             <th onclick="ordenarTabla(5)">Fecha de la actividad</th>
           </tr>
         </thead>
-        <tbody class="entradas-datos" id="entradas-datos">
+        <tbody class="datos-tablas" id="entradas-datos">
         </tbody>
       </table>
-      <div id="info-de-dato"></div>
+      <div class="extra-info" id="info-de-dato"></div>
       <script src="js/entradas.js"></script>
     </body>
 </html>
