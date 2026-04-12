@@ -405,7 +405,7 @@ const ordenarTabla = (colIndex) => {
     const filas = Array.from(cuerpo.rows);
 
     if (colIndex == ultimaColumnaOrdenada) {
-      ascendente = !ascendente
+      ascendente = !ascendente;
     } else {
       ascendente = true;
       ultimaColumnaOrdenada = colIndex;
@@ -418,15 +418,15 @@ const ordenarTabla = (colIndex) => {
 
       if (colIndex === 6) {
         // Comparación numérica para las horas
-        aCompararA = +valorA
-        aCompararB = +valorB
+        aCompararA = +valorA;
+        aCompararB = +valorB;
         resultado = ascendente ? aCompararA - aCompararB : aCompararB - aCompararA;
         return resultado
 
       } if (colIndex === 5) {
-        aCompararA = valorA.split(" a las ")[0]+"-"+valorA.split(" a las ")[1]
-        aCompararB = valorB.split(" a las ")[0]+"-"+valorB.split(" a las ")[1]
-        resultado = ascendente ? aCompararA.localeCompare(aCompararB) : aCompararB.localeCompare(aCompararA)
+        aCompararA = valorA.split(" a las ")[0]+"-"+valorA.split(" a las ")[1];
+        aCompararB = valorB.split(" a las ")[0]+"-"+valorB.split(" a las ")[1];
+        resultado = ascendente ? aCompararA.localeCompare(aCompararB) : aCompararB.localeCompare(aCompararA);
         return resultado
 
       } else {
@@ -440,30 +440,30 @@ const ordenarTabla = (colIndex) => {
 
 const mostrarInfo = (id) => {
   const info = document.getElementById("info-de-dato");
-  const indice = parseInt(id.split("-")[1])
+  const indice = parseInt(id.split("-")[1]);
 
-  info.innerHTML = ""
+  info.innerHTML = "";
 
-  const fig = document.createElement("figure")
-  const figDesc = document.createElement("figcaption")
-  const img = document.createElement("img")
+  const fig = document.createElement("figure");
+  const figDesc = document.createElement("figcaption");
+  const img = document.createElement("img");
 
-  img.src = "img/placeholder.jpg"
-  img.setAttribute("class", "dato-expandido-img")
-  img.setAttribute("alt", "Imagen placeholder")
-  img.setAttribute("title", "Imagen de la acividad")
+  img.src = "img/placeholder.jpg";
+  img.setAttribute("class", "dato-expandido-img");
+  img.setAttribute("alt", "Imagen placeholder");
+  img.setAttribute("title", "Imagen de la acividad");
   
-  figDesc.textContent = "Imagen de la acividad"
+  figDesc.textContent = "Imagen de la acividad";
 
-  fig.appendChild(img)
-  fig.appendChild(figDesc)
-  info.appendChild(fig)
+  fig.appendChild(img);
+  fig.appendChild(figDesc);
+  info.appendChild(fig);
 
-  const dato = document.createElement("div")
-  dato.setAttribute("class", "dato-expandido-info")
+  const dato = document.createElement("div");
+  dato.setAttribute("class", "dato-expandido-info");
 
-  const lista = document.createElement("ul")
-  lista.setAttribute("class", "dato-expandido-lista")
+  const lista = document.createElement("ul");
+  lista.setAttribute("class", "dato-expandido-lista");
   
   const actividadNombre = document.createElement("h2");
   const nombre = document.createElement("h3");
