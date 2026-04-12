@@ -5,58 +5,58 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-        <h1>Registro</h1>
-            <button type="button" id="a-index-por-registro" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
-        <form id="registro">
+        <h1 class="titulo" id="titulo-registro">Registro</h1>
+            <button type="button" class="a-index-universal" id="a-index-por-registro" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
+        <form class="formulario" classid="registro">
             <h2>Información personal</h2>
-                <label for="nombre">Nombre:</label>
-                <input name="nombre" id="nombre" required>
-                <br>
-                <label for="email">Correo institucional:</label>
-                <input name="email" id="email" required>
-                <br>
-                <label for="rol">¿Usted es un?:</label>
-                <select name="rol" id="rol" required>
-                    <option value="">- Elja un elemento -</option>
-                    <option value="pregrado">Estudiante de pregrado</option>
-                    <option value="postgrado">Estudiante de postgrado</option>
-                    <option value="academico">Académico</option>
-                    <option value="funcionario">Funcionario</option>
-                </select>
-            <!--Agregar "año de ingreso" en caso que se trate de un estudiante -->
+                <div class="pieza-formulario" id="datos-personales">
+                    <label class="input-label" for="nombre">Nombre:</label>
+                    <input class="input" name="nombre" id="nombre" required>
+                    <label class="input-label" for="email">Correo institucional:</label>
+                    <input class="input" name="email" id="email" required>
+                    <label class="input-label" for="rol">¿Usted es un?:</label>
+
+                    <select class="imput-form" name="rol" id="rol" required>
+                        <option value="">- Elja un elemento -</option>
+                        <option value="pregrado">Estudiante de pregrado</option>
+                        <option value="postgrado">Estudiante de postgrado</option>
+                        <option value="academico">Académico</option>
+                        <option value="funcionario">Funcionario</option>
+                    </select>
+                </div>
             <h2>Información sobre la actividad</h2>
-                <label for="nombre-actividad">Nombre de la actividad:</label>
-                <input name="nombre-actividad" id="nombre-actividad" required>
-                <br>
-                <label for="tipo">Tipo de actividad:</label>
-                <select name="tipo" id="tipo" required>
-                    <option value="">- Elja un elemento -</option>
-                    <option value="deportiva">Deportiva</option>
-                    <option value="recreativa">Recreativa</option>
-                    <option value="artistica">Artística</option>
-                    <option value="social">Social</option>
-                    <option value="tecnologica">Tecnológica</option>
-                    <option value="otro">Otro</option>
-                </select>
-                <br>
-                <label for="fecha">Fecha de la actividad</label>
-                <input type="datetime-local" name="fecha" id="fecha" required>
-                <br>
-                <label for="horas">Duración de la actividad (en horas)</label>
-                <input type="number" name="horas" id="horas" required>
-                <br>
-                <label for="medios">Imagen o video relacionado con la habilidad</label>
-                <div class="tooltip">&#8505;&#65039;
-                    <span class="tooltiptext">Foto o video que se tomó de la actividad, puede ser una tomada por usted o un tercero</span>
+                <div class="pieza-formulario" id="info-actividad">
+                    <label class="input-label" for="nombre-actividad">Nombre de la actividad:</label>
+                    <input class="input" name="nombre-actividad" id="nombre-actividad" required>
+                    <label class="input-label" for="tipo">Tipo de actividad:</label>
+
+                    <select class="input-form" name="tipo" id="tipo" required>
+                        <option value="">- Elja un elemento -</option>
+                        <option value="deportiva">Deportiva</option>
+                        <option value="recreativa">Recreativa</option>
+                        <option value="artistica">Artística</option>
+                        <option value="social">Social</option>
+                        <option value="tecnologica">Tecnológica</option>
+                        <option value="otro">Otro</option>
+                    </select>
+
+                    <label class="input-label" for="fecha">Fecha de la actividad</label>
+                    <input class="input" type="datetime-local" name="fecha" id="fecha" required>
+                    <label class="input-label" for="horas">Duración de la actividad (en horas)</label>
+                    <input class="input" type="number" name="horas" id="horas" required>
+                    
+                    <label class="input-label" for="medios">Imagen o video relacionado con la habilidad</label>
+                    <div class="tooltip">&#8505;&#65039;
+                        <span class="tooltip-label">Foto o video que se tomó de la actividad, puede ser una tomada por usted o un tercero</span>
+                    </div>  
+                    <input class="input" type="file" name="medios" id="medios" required>
+
+                    <label class="input-label" for="link">Enlace relacionado con la actividad</label>
+                    <div class="tooltip">&#8505;&#65039;
+                        <span class="tooltip-label">Enlace al sitio o publicación desde el cual descubrió la actividad</span>
+                    </div>
+                    <input class="input" type="url" name="link" id="link" required>
                 </div>
-                <input type="file" name="medios" id="medios" required>
-                <br>
-                <label for="link">Enlace relacionado con la actividad</label>
-                <div class="tooltip">&#8505;&#65039;
-                    <span class="tooltiptext">Enlace al sitio o publicación desde el cual descubrió la actividad</span>
-                </div>
-                <input type="url" name="link" id="link" required>
-                <br>
                 <button type="submit" id="envio-actividad" onclick="validarRegistro(event)">Registrar actividad</button>
         </form>
         <script src="js/registro.js"></script>
