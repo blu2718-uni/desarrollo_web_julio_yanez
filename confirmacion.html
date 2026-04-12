@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Actividades DCC</title>
+        <title>Confirmación</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-        <h1>Se registró su actividad</h1>
-        <h2>¿Que desearía hacer?</h2>
-        <ul>
-            <li><button type="button" id="re-registrar" onclick="reRegistrar()">Registrar otra actividad</button></li>
-            <li><button type="button" id="a-menu" onclick="window.location.href = './index.html'">Regresar al menú principal</button></li>
+        <h1 class="titulo" id="titulo-confirmacion">Se registró su actividad</h1>
+        <h2 class="subtitulo" id="subtitulo-confirmación">¿Que desearía hacer?</h2>
+        <ul class="menu-botones" id="botones-index">
+            <li><button type="button" class="boton-menu" id="a-registro-por-confirmacion" onclick="reRegistrar()">Registrar otra actividad</button></li>
+            <li><button type="button" class="boton-menu" id="a-menu-por-confirmacion" onclick="window.location.href = './index.html'">Regresar al menú principal</button></li>
         </ul>
         <script src="js/re_registro.js"></script>
     </body>
