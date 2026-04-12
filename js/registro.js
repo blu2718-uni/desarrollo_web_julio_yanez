@@ -39,8 +39,7 @@ const validarMedios = (medios) => {
 }
 
 const validarEnlace = (enlace) => {
-    const regex = /(\bhttp:\/\/\b|\bhttps:\/\/\b)([a-z]{0,64}\.){0,16}[a-zA-Z0-9]{1,128}\.([a-z]{1,4}|[a-z]{1,4}\.[a-z]{1,4})\/.*/
-
+    const regex = /^(https?:\/\/)?(?:[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}\.)+[a-zA-Z]{2,63}(?:\.[a-zA-Z]{2,63})?(?:\/.*)?$/;
     return regex.test(enlace.toString())
 }
 
