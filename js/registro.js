@@ -102,8 +102,6 @@ const validarRegistro = (event) => {
         }
 
         mensajesValidacion.innerText = "Los siguientes campos son inválidos o están vacios:";
-
-        statusValidacion.style.backgroundColor = "#ffdddd";
         statusValidacion.hidden = false;
     }
 }
