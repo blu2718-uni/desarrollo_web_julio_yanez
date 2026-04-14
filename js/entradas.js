@@ -451,9 +451,9 @@ const mostrarInfo = (id) => {
   img.src = "img/placeholder.jpg";
   img.setAttribute("class", "dato-expandido-img");
   img.setAttribute("alt", "Imagen placeholder");
-  img.setAttribute("title", "Imagen de la acividad");
+  img.setAttribute("title", "Imagen de la actividad");
   
-  figDesc.textContent = "Imagen de la acividad";
+  figDesc.textContent = "Imagen de la actividad";
 
   fig.appendChild(img);
   fig.appendChild(figDesc);
