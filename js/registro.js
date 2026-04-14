@@ -54,6 +54,14 @@ const validarEnlace = (enlace) => {
 const validarRegistro = (event) => {
     event.preventDefault();
     let valid = true;
+    let inputsInvalidos = [];
+
+    // Codigo original de la caja con información de la validación sacado del tercer auxiliar.
+
+    const inputInvalido = (inputName) => {
+        inputsInvalidos.push(inputName);
+        valid &&= false;
+    };
 
     const nombreUsuario = document.getElementById("nombre");
     const email = document.getElementById("email");
@@ -64,22 +72,38 @@ const validarRegistro = (event) => {
     const medios = document.getElementById("medios");
     const link = document.getElementById("link");
 
-    if(!validarNombre(nombreUsuario.value.toString())){ valid = false }
-    if(!validarCorreo(email.value.toString())){ valid = false }
-    if(!validarRol(rol.value)){ valid = false }
-    if(!validarNombreActividad(nombreActividad.value.toString())){ valid = false }
-    if(!validarTipoActividad(tipoActividad.value)){ valid = false }
-    if(!validarDuracionActividad(parseInt(horas.value))){ valid = false }
-    if(!validarMedios(medios)){ valid = false }
-    if(!validarEnlace(link.value.toString())){ valid = false }
+    if(!validarNombre(nombreUsuario.value.toString())){ inputInvalido("Nombre") }
+    if(!validarCorreo(email.value.toString())){ inputInvalido("Correo") }
+    if(!validarRol(rol.value)){ inputInvalido("Rol") }
+    if(!validarNombreActividad(nombreActividad.value.toString())){ inputInvalido("Nombre de la actividad") }
+    if(!validarTipoActividad(tipoActividad.value)){ inputInvalido("Tipo de la actividad") }
+    if(!validarDuracionActividad(parseInt(horas.value))){ inputInvalido("Duración de la actividad") }
+    if(!validarMedios(medios)){ inputInvalido("Multimedia relacionada a la actividad") }
+    if(!validarEnlace(link.value.toString())){ inputInvalido("Enlace relacionada a la actividad") }
+
+    let statusValidacion = document.getElementById("validacion-registro");
+    let mensajesValidacion = document.getElementById("mensajes-validacion");
+    let listaValidacion = document.getElementById("lista-validacion");
 
     if(valid) {
         const nombreUsuarioClean = encodeURIComponent(nombreUsuario.value);
         const emailClean = encodeURIComponent(email.value);
         const rolClean = encodeURIComponent(rol.value);
 
+        statusValidacion.hidden = true;
         window.location.href = `./confirmacion.html?nombre=${nombreUsuarioClean}&email=${emailClean}&rol=${rolClean}`;
     } else {
-        alert("Entrada inválida")
+        listaValidacion.textContent = "";
+
+        for (input of inputsInvalidos) {
+            let elementoLista = document.createElement("li");
+            elementoLista.innerText = input;
+            listaValidacion.append(elementoLista);
+        }
+
+        mensajesValidacion.innerText = "Los siguientes campos son inválidos o están vacios:";
+
+        statusValidacion.style.backgroundColor = "#ffdddd";
+        statusValidacion.hidden = false;
     }
 }

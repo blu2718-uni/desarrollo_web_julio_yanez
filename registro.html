@@ -9,12 +9,16 @@
         <div>   
             <button type="button" class="a-index-universal" id="a-index-por-registro" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
         </div>
+        <div class="validacion" id="validacion-registro" hidden>
+            <h2 id="mensajes-validacion"></h2>
+            <ul id="lista-validacion"></ul>
+        </div>
         <form class="formulario" id="registro">
             <h2>Información personal</h2>
                 <div class="pieza-formulario" id="datos-personales">
-                    <label class="input-label" for="nombre">Nombre:</label>
+                    <label class="input-label" for="nombre">Nombre: <span class="instrucciones-formulario">Coloque su nombre y dos apellidos</span></label>
                     <input class="input" name="nombre" id="nombre" required>
-                    <label class="input-label" for="email">Correo institucional:</label>
+                    <label class="input-label" for="email">Correo institucional: <span class="instrucciones-formulario">Los dominios válidos son ing.uchile.cl, ug.uchile.cl y dcc.uchile.cl</span></label>
                     <input class="input" name="email" id="email" required>
                     <label class="input-label" for="rol">¿Usted es un?:</label>
 
@@ -44,7 +48,7 @@
 
                     <label class="input-label" for="fecha">Fecha de la actividad</label>
                     <input class="input" type="datetime-local" name="fecha" id="fecha" required>
-                    <label class="input-label" for="horas">Duración de la actividad (en horas)</label>
+                    <label class="input-label" for="horas">Duración de la actividad <span class="instrucciones-formulario">En horas</span></label>
                     <input class="input" type="number" name="horas" id="horas" required>
                     
                     <label class="input-label" for="medios">Imagen o video relacionado con la habilidad</label>
