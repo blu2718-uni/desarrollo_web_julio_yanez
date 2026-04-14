@@ -480,8 +480,10 @@ const mostrarInfo = (id) => {
   correo.textContent = data[indice]["email"];
   rol.textContent = (data[indice]["rol"] === "Pregrado" || data[indice]["rol"] === "Postgrado") ? "Rol dentro de la universidad: Estudiante de "+data[indice]["rol"] : "Rol dentro de la universidad: "+data[indice]["rol"];
   actividadTipo.textContent = "Actividad de tipo: "+data[indice]["tipo"];
-  actividadFecha.textContent = "Fecha de la actividad: "+Date(data[indice]["fecha"]).toString();
-  actividadDuracion.textContent = "Duarción en horas: "+data[indice]["horas"].toString()+" hrs";
+  const fechaObj = new Date(data[indice]["fecha"]);
+  const fechaFormateada = fechaObj.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) + ' a las ' + fechaObj.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+  actividadFecha.textContent = "Fecha de la actividad: " + fechaFormateada;
+  actividadDuracion.textContent = "Duración en horas: "+data[indice]["horas"].toString()+" hrs";
   actividadEnlace.innerHTML = enlace;
   enlace.href = data[indice]["link"].toString();
   enlace.textContent = "Enlace";
