@@ -44,3 +44,124 @@ h2 {
     margin-bottom: 16;
     text-transform: uppercase;
 }
+
+.boton-menu,
+.a-index-universal,
+.boton-submit {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 16px;
+    border: 1px solid #B91C1C;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #B91C1C;
+    color: #FFFFFF;
+}
+
+.boton-menu:hover,
+.boton-submit:hover {
+    background-color: #991B1B;
+    border-color: #991B1B;
+}
+
+.a-index-universal {
+    font-family: 'Inter';
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    background: transparent;
+    color: #6B7280;
+    border: none;
+    padding: 8px 0;
+}
+
+.a-index-universal:hover {
+    background: transparent;
+    color: #B91C1C;
+}
+
+.menu-botones {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+    margin: 32px auto 0;
+    padding: 0;
+}
+
+.menu-botones li {
+    width: 100%;
+}
+
+.menu-botones .boton-menu {
+    width: 100%;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.boton-submit {
+    width: 50%;
+    margin-top: 32px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.formulario {
+    max-width: 512px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 64px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px #1f293717;
+}
+
+.pieza-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.input-label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #1F2937;
+}
+
+.input:focus,
+.input-select:focus {
+    outline: none;
+    border-color: #B91C1C;
+}
+    
+.input,
+.input-select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    color: #1F2937;
+}
+
+.instrucciones-formulario {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6B7280;
+    font-style: italic;
+}
