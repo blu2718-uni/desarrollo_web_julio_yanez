@@ -5,8 +5,8 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-        <h1>Metricas</h1>
-        <div>
+        <h1 class="titulo" id="titulo-metricas">Métricas</h1>
+        <div class="a-index-container">
             <button type="button" class="a-index-universal" id="a-index-por-metricas" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
         </div>
         <table class="tabla">
@@ -76,8 +76,10 @@
             </tr>
             </tbody>
         </table>
-        <img src="img/line-chart.png" alt="Actividades por métricas" class="chart" id="grafico-metricas">
-        <img src="img/pie-chart.png" alt="Actividades por tipo" class="chart" id="grafico-tipo">
-        <img src="img/other-pie-chart.png" alt="Actividades por rol" class="chart" id="grafico-rol">
+        <div class="graficos-container">
+            <img src="img/line-chart.png" alt="Actividades por métricas" class="chart" id="grafico-metricas">
+            <img src="img/pie-chart.png" alt="Actividades por tipo" class="chart" id="grafico-tipo">
+            <img src="img/other-pie-chart.png" alt="Actividades por rol" class="chart" id="grafico-rol">
+        </div>
     </body>
 </html>
