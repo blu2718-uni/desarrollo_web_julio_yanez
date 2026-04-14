@@ -11,11 +11,11 @@
             <button type="button" class="a-index-universal" id="a-index-por-registro" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
         </div>
         <div class="validacion" id="validacion-registro" hidden>
-            <h2 id="mensajes-validacion"></h2>
+            <h1 id="mensajes-validacion"></h1>
             <ul id="lista-validacion"></ul>
         </div>
         <form class="formulario" id="registro">
-            <h2>Información personal</h2>
+            <h1>Información personal</h1>
                 <div class="pieza-formulario" id="datos-personales">
                     <label class="input-label" for="nombre">Nombre: <span class="instrucciones-formulario">Coloque su nombre y dos apellidos</span></label>
                     <input class="input" name="nombre" id="nombre" required>
@@ -31,7 +31,7 @@
                         <option value="funcionario">Funcionario</option>
                     </select>
                 </div>
-            <h2>Información sobre la actividad</h2>
+            <h1>Información sobre la actividad</h1>
                 <div class="pieza-formulario" id="info-actividad">
                     <label class="input-label" for="nombre-actividad">Nombre de la actividad:</label>
                     <input class="input" name="nombre-actividad" id="nombre-actividad" required>
@@ -51,17 +51,10 @@
                     <input class="input" type="datetime-local" name="fecha" id="fecha" required>
                     <label class="input-label" for="horas">Duración de la actividad <span class="instrucciones-formulario">En horas</span></label>
                     <input class="input" type="number" name="horas" id="horas" required>
-                    
-                    <label class="input-label" for="medios">Imagen o video relacionado con la habilidad</label>
-                    <div class="tooltip">ⓘ
-                        <span class="tooltip-label">Foto o video que se tomó de la actividad, puede ser una tomada por usted o un tercero</span>
-                    </div>  
+                    <label class="input-label" for="medios">Imagen o video relacionado con la habilidad <span class="instrucciones-formulario">Foto o video que se tomó de la actividad, puede ser una tomada por usted o un tercero</span></label>
                     <input class="input" type="file" name="medios" id="medios" required>
 
-                    <label class="input-label" for="link">Enlace relacionado con la actividad</label>
-                    <div class="tooltip">ⓘ
-                        <span class="tooltip-label">Enlace al sitio o publicación desde el cual descubrió la actividad</span>
-                    </div>
+                    <label class="input-label" for="link">Enlace relacionado con la actividad<span class="instrucciones-formulario">Enlace al sitio o publicación desde el cual descubrió la actividad</span></label>
                     <input class="input" type="url" name="link" id="link" required>
                 </div>
                 <button type="submit" class="boton-submit" id="envio-actividad" onclick="validarRegistro(event)">Registrar actividad</button>
