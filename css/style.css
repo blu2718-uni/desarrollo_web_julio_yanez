@@ -1,23 +1,46 @@
-/* Código del Tooltip original extraido de https://www.w3schools.com/css/css_tooltip.asp */
-.tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 2px dotted #504747d0; 
-  cursor: pointer;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600;700&display=swap');
+
+html {
+    font-size: 16px;
 }
 
-.tooltiptext {
-  visibility: hidden;
-  width: 256px;
-  background-color: #504747d0;
-  color: #E1C8C8;
-  text-align: justify;
-  padding: 16px;
-  border-radius: 16px;
-  position: absolute;
-  z-index: 1; 
+body {
+    font-family: 'Inter';
+    font-weight: 400;
+    background-color: #FAFAFA;
+    color: #1F2937;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: var(--spacing-xl);
 }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
+h1, h2, h3 {
+    font-family: 'Source Serif 4';
+    font-weight: 600;
+}
+
+.titulo {
+    font-family: 'Source Serif 4';
+    font-size: 64px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #1F2937;
+}
+
+.subtitulo {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    color: #6B7280;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 16;
+    text-transform: uppercase;
 }
