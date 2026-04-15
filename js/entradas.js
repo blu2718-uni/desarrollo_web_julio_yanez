@@ -444,29 +444,14 @@ const mostrarInfo = (id) => {
 
   info.innerHTML = "";
 
-  const fig = document.createElement("figure");
-  const figDesc = document.createElement("figcaption");
-  const img = document.createElement("img");
-
-  img.src = "img/placeholder.jpg";
-  img.setAttribute("class", "dato-expandido-img");
-  img.setAttribute("alt", "Imagen placeholder");
-  img.setAttribute("title", "Imagen de la actividad");
-  
-  figDesc.textContent = "Imagen de la actividad";
-
-  fig.appendChild(img);
-  fig.appendChild(figDesc);
-  info.appendChild(fig);
-
   const dato = document.createElement("div");
   dato.setAttribute("class", "dato-expandido-info");
-
+  
   const lista = document.createElement("ul");
   lista.setAttribute("class", "dato-expandido-lista");
   
-  const actividadNombre = document.createElement("h2");
-  const nombre = document.createElement("h3");
+  const actividadNombre = document.createElement("h1");
+  const nombre = document.createElement("p");
   const correo = document.createElement("p");
   const rol = document.createElement("li");
   const actividadTipo = document.createElement("li");
@@ -474,7 +459,7 @@ const mostrarInfo = (id) => {
   const actividadDuracion = document.createElement("li");
   const actividadEnlace = document.createElement("p");
   const enlace = document.createElement("a")
-
+  
   actividadNombre.textContent = data[indice]["nombre-actividad"];
   nombre.textContent = "Registro de "+data[indice]["nombre"];
   correo.textContent = data[indice]["email"];
@@ -489,7 +474,7 @@ const mostrarInfo = (id) => {
   enlace.textContent = "Enlace";
   
   actividadEnlace.appendChild(enlace);
-
+  
   dato.appendChild(actividadNombre);
   dato.appendChild(nombre);
   dato.appendChild(correo);
@@ -499,6 +484,21 @@ const mostrarInfo = (id) => {
   lista.appendChild(actividadDuracion);
   dato.appendChild(lista)
   dato.appendChild(actividadEnlace);
-
+  
   info.appendChild(dato);
+
+  const fig = document.createElement("figure");
+  const figDesc = document.createElement("figcaption");
+  const img = document.createElement("img");
+  
+  img.src = "img/placeholder.jpg";
+  img.setAttribute("class", "dato-expandido-img");
+  img.setAttribute("alt", "Imagen placeholder");
+  img.setAttribute("title", "Imagen de la actividad");
+  
+  figDesc.textContent = "Imagen de la actividad";
+  
+  fig.appendChild(img);
+  fig.appendChild(figDesc);
+  info.appendChild(fig);
 }
