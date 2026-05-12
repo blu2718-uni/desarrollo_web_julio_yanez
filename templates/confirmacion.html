@@ -4,10 +4,7 @@
 <h1 class="titulo" id="titulo-confirmacion">Se registró su actividad</h1>
 <h2 class="subtitulo" id="subtitulo-confirmación">¿Que desearía hacer?</h2>
 <ul class="menu-botones" id="botones-index">
-    <li><button type="button" class="boton-menu" id="a-registro-por-confirmacion" onclick="reRegistrar()">Registrar otra actividad</button></li>
-    <li><button type="button" class="boton-menu" id="a-menu-por-confirmacion" onclick="window.location.href = './index.html'">Regresar al menú principal</button></li>
+    <li><button type="button" class="boton-menu" id="a-registro-por-confirmacion" onclick="window.location.href = '{{ url_for('registro') }}'">Registrar otra actividad</button></li>
+    <li><button type="button" class="boton-menu" id="a-menu-por-confirmacion" onclick="window.location.href = '{{ url_for('index') }}'">Regresar al menú principal</button></li>
 </ul>
-{% endblock %}
-{% block javascript %}
-<script src="js/re_registro.js"></script>
 {% endblock %}
