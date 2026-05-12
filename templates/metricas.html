@@ -70,8 +70,8 @@
     </tbody>
 </table>
 <div class="graficos-container">
-    <img src="img/line-chart.png" alt="Actividades por métricas" class="chart" id="grafico-metricas">
-    <img src="img/pie-chart.png" alt="Actividades por tipo" class="chart" id="grafico-tipo">
-    <img src="img/other-pie-chart.png" alt="Actividades por rol" class="chart" id="grafico-rol">
+    <img src="{{ url_for('static', filename='img/line-chart.png') }}" alt="Actividades por métricas" class="chart" id="grafico-metricas">
+    <img src="{{ url_for('static', filename='img/pie-chart.png') }}" alt="Actividades por tipo" class="chart" id="grafico-tipo">
+    <img src="{{ url_for('static', filename='img/other-pie-chart.png') }}" alt="Actividades por rol" class="chart" id="grafico-rol">
 </div>
 {% endblock %}
