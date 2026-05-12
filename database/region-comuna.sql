@@ -34,10 +34,12 @@ INSERT INTO comuna (region_id, id, nombre) VALUES (2, 20302, 'Mejillones');
 INSERT INTO comuna (region_id, id, nombre) VALUES (2, 20303, 'Antofagasta');
 INSERT INTO comuna (region_id, id, nombre) VALUES (2, 20304, 'Taltal');
 INSERT INTO comuna (region_id, id, nombre) VALUES (3, 30101, 'Diego de Almagro');
+
 INSERT INTO comuna (region_id, id, nombre) VALUES (3, 30102, 'Chañaral');
 INSERT INTO comuna (region_id, id, nombre) VALUES (3, 30201, 'Caldera');
 INSERT INTO comuna (region_id, id, nombre) VALUES (3, 30202, 'Copiapo');
 INSERT INTO comuna (region_id, id, nombre) VALUES (3, 30203, 'Tierra Amarilla');
+
 INSERT INTO comuna (region_id, id, nombre) VALUES (3, 30301, 'Huasco');
 INSERT INTO comuna (region_id, id, nombre) VALUES (3, 30302, 'Freirina');
 INSERT INTO comuna (region_id, id, nombre) VALUES (3, 30303, 'Vallenar');
