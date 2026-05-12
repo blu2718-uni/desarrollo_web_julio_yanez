@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 from database.db import Miembro, Actividad, Foto, Comuna, SessionLocal
+from sqlalchemy.orm import joinedload
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import filetype
@@ -98,7 +99,7 @@ def validar_registro_servidor(form, files):
 def index():
     db_session = SessionLocal()
     try:
-        ultimos_miembros = db_session.query(Miembro).order_by(Miembro.fecha_registro.desc()).limit(5).all()
+        ultimos_miembros = db_session.query(Miembro).options(joinedload(Miembro.comuna)).order_by(Miembro.fecha_registro.desc()).limit(5).all()
     except Exception:
         ultimos_miembros = []
     finally:

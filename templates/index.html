@@ -10,4 +10,32 @@
     <li><button type="button" class="boton-menu" id="a-entradas-por-index" onclick="window.location.href = '{{ url_for('entradas') }}' ; ">Actividades registradas</button></li>
     <li><button type="button" class="boton-menu" id="a-metricas-por-index" onclick="window.location.href = '{{ url_for('metricas') }}' ; ">Estadísticas de actividades</button></li>
 </ul>
+
+<h2 class="subtitulo" style="margin-top: 48px;">Últimos miembros registrados</h2>
+{% if ultimos_miembros %}
+<table class="tabla" id="ultimos-miembros">
+  <thead class="encabezado-tablas">
+    <tr>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>Rol</th>
+      <th>Comuna</th>
+      <th>Fecha de registro</th>
+    </tr>
+  </thead>
+  <tbody class="datos-tablas">
+    {% for miembro in ultimos_miembros %}
+    <tr>
+      <td>{{ miembro.nombre }}</td>
+      <td>{{ miembro.email }}</td>
+      <td>{{ miembro.rol }}</td>
+      <td>{{ miembro.comuna.nombre }}</td>
+      <td>{{ miembro.fecha_registro.strftime('%Y-%m-%d %H:%M') }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="subtitulo">No hay miembros registrados aún.</p>
+{% endif %}
 {% endblock %}
