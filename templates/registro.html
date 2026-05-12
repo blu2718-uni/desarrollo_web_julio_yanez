@@ -13,12 +13,12 @@
 <form class="formulario" id="registro" method="POST" action="{{ url_for('registro') }}" enctype="multipart/form-data">
     <h1>Información personal</h1>
         <div class="pieza-formulario" id="datos-personales">
-            <label class="input-label" for="nombre">Nombre: <span class="instrucciones-formulario">Coloque su nombre y dos apellidos</span></label>
+            <label class="input-label" for="nombre">Nombre: <span class="instrucciones-formulario">Coloque su nombre y dos apellidos. Ej: Paco Perez Pereira</span></label>
             <input class="input" name="nombre" id="nombre" value="{{ request.form.get('nombre', '') }}" required>
             <label class="input-label" for="email">Correo institucional: <span class="instrucciones-formulario">Los dominios válidos son ing.uchile.cl, ug.uchile.cl y dcc.uchile.cl</span></label>
             <input class="input" name="email" id="email" value="{{ request.form.get('email', '') }}" required>
             <label class="input-label" for="telefono">Teléfono: <span class="instrucciones-formulario">Ej: +56912345678</span></label>
-            <input class="input" name="telefono" id="telefono" placeholder="+56912345678" value="{{ request.form.get('telefono', '') }}" required>
+            <input class="input" name="telefono" id="telefono" value="{{ request.form.get('telefono', '') }}" required>
             <label class="input-label" for="rol">¿Usted es un?:</label>
 
             <select class="input-select" name="rol" id="rol" required>
