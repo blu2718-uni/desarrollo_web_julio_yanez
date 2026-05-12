@@ -2,52 +2,69 @@
 {% block title %} Registro {% endblock %}
 {% block content %}
 <h1 class="titulo" id="titulo-registro">Registro</h1>
-<div class="validacion" id="validacion-registro" hidden>
-    <h1 id="mensajes-validacion"></h1>
-    <ul id="lista-validacion"></ul>
+<div class="validacion" id="validacion-registro" {% if not errores %}hidden{% endif %}>
+    <h1 id="mensajes-validacion">Los siguientes campos son inválidos o están vacios:</h1>
+    <ul id="lista-validacion">
+        {% for error in errores %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
 </div>
-<form class="formulario" id="registro">
+<form class="formulario" id="registro" method="POST" action="{{ url_for('registro') }}" enctype="multipart/form-data">
     <h1>Información personal</h1>
         <div class="pieza-formulario" id="datos-personales">
             <label class="input-label" for="nombre">Nombre: <span class="instrucciones-formulario">Coloque su nombre y dos apellidos</span></label>
-            <input class="input" name="nombre" id="nombre" required>
+            <input class="input" name="nombre" id="nombre" value="{{ request.form.get('nombre', '') }}" required>
             <label class="input-label" for="email">Correo institucional: <span class="instrucciones-formulario">Los dominios válidos son ing.uchile.cl, ug.uchile.cl y dcc.uchile.cl</span></label>
-            <input class="input" name="email" id="email" required>
+            <input class="input" name="email" id="email" value="{{ request.form.get('email', '') }}" required>
+            <label class="input-label" for="telefono">Teléfono: <span class="instrucciones-formulario">Ej: +56912345678</span></label>
+            <input class="input" name="telefono" id="telefono" placeholder="+56912345678" value="{{ request.form.get('telefono', '') }}" required>
             <label class="input-label" for="rol">¿Usted es un?:</label>
 
             <select class="input-select" name="rol" id="rol" required>
                 <option value="">- Elja un elemento -</option>
-                <option value="pregrado">Estudiante de pregrado</option>
-                <option value="postgrado">Estudiante de postgrado</option>
-                <option value="academico">Académico</option>
-                <option value="funcionario">Funcionario</option>
+                <option value="pregrado" {% if request.form.get('rol') == 'pregrado' %}selected{% endif %}>Estudiante de pregrado</option>
+                <option value="postgrado" {% if request.form.get('rol') == 'postgrado' %}selected{% endif %}>Estudiante de postgrado</option>
+                <option value="academico" {% if request.form.get('rol') == 'academico' %}selected{% endif %}>Académico</option>
+                <option value="funcionario" {% if request.form.get('rol') == 'funcionario' %}selected{% endif %}>Funcionario</option>
+            </select>
+
+            <label class="input-label" for="comuna">Comuna:</label>
+            <select class="input-select" name="comuna" id="comuna" required>
+                <option value="">- Seleccione una comuna -</option>
+                {% for comuna in comunas %}
+                <option value="{{ comuna.id }}" {% if request.form.get('comuna')|string == comuna.id|string %}selected{% endif %}>{{ comuna.nombre }}</option>
+                {% endfor %}
             </select>
         </div>
     <h1>Información sobre la actividad</h1>
         <div class="pieza-formulario" id="info-actividad">
             <label class="input-label" for="nombre-actividad">Nombre de la actividad:</label>
-            <input class="input" name="nombre-actividad" id="nombre-actividad" required>
+            <input class="input" name="nombre-actividad" id="nombre-actividad" value="{{ request.form.get('nombre-actividad', '') }}" required>
             <label class="input-label" for="tipo">Tipo de actividad:</label>
 
             <select class="input-select" name="tipo" id="tipo" required>
                 <option value="">- Elja un elemento -</option>
-                <option value="deportiva">Deportiva</option>
-                <option value="recreativa">Recreativa</option>
-                <option value="artistica">Artística</option>
-                <option value="social">Social</option>
-                <option value="tecnologica">Tecnológica</option>
-                <option value="otro">Otro</option>
+                <option value="deporte" {% if request.form.get('tipo') == 'deporte' %}selected{% endif %}>Deportiva</option>
+                <option value="recreación" {% if request.form.get('tipo') == 'recreación' %}selected{% endif %}>Recreativa</option>
+                <option value="arte" {% if request.form.get('tipo') == 'arte' %}selected{% endif %}>Artística</option>
+                <option value="social" {% if request.form.get('tipo') == 'social' %}selected{% endif %}>Social</option>
+                <option value="tecnología" {% if request.form.get('tipo') == 'tecnología' %}selected{% endif %}>Tecnológica</option>
+                <option value="otra" {% if request.form.get('tipo') == 'otra' %}selected{% endif %}>Otro</option>
             </select>
 
             <label class="input-label" for="fecha">Fecha de la actividad</label>
-            <input class="input" type="datetime-local" name="fecha" id="fecha" required>
+            <input class="input" type="datetime-local" name="fecha" id="fecha" value="{{ request.form.get('fecha', '') }}" required>
             <label class="input-label" for="horas">Duración de la actividad <span class="instrucciones-formulario">En horas</span></label>
-            <input class="input" type="number" name="horas" id="horas" required>
-            <label class="input-label" for="medios">Imagen o video relacionado con la habilidad <span class="instrucciones-formulario">Foto o video que se tomó de la actividad, puede ser una tomada por usted o un tercero</span></label>
-            <input class="input" type="file" name="medios" id="medios" required>
+            <input class="input" type="number" name="horas" id="horas" value="{{ request.form.get('horas', '') }}" required>
+            <label class="input-label" for="fotos">Fotos de la actividad <span class="instrucciones-formulario">Puede subir hasta 5 imágenes (JPEG o PNG, máx. 5 MB c/u)</span></label>
+            <input class="input" type="file" name="fotos" id="fotos" multiple accept="image/jpeg,image/png" required>
 
             <label class="input-label" for="link">Enlace relacionado con la actividad<span class="instrucciones-formulario">Enlace al sitio o publicación desde el cual descubrió la actividad</span></label>
-            <input class="input" type="url" name="link" id="link" required>
+            <input class="input" type="url" name="link" id="link" value="{{ request.form.get('link', '') }}" required>
+
+            <label class="input-label" for="descripcion">Descripción de la actividad <span class="instrucciones-formulario">Máximo 500 caracteres</span></label>
+            <textarea class="input" name="descripcion" id="descripcion" rows="4" maxlength="500" required>{{ request.form.get('descripcion', '') }}</textarea>
         </div>
         <button type="submit" class="boton-submit" id="envio-actividad" onclick="validarRegistro(event)">Registrar actividad</button>
 </form>
