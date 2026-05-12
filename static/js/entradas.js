@@ -491,7 +491,7 @@ const mostrarInfo = (id) => {
   const figDesc = document.createElement("figcaption");
   const img = document.createElement("img");
   
-  img.src = "img/placeholder.jpg";
+  img.src = "/static/img/placeholder.jpg";
   img.setAttribute("class", "dato-expandido-img");
   img.setAttribute("alt", "Imagen placeholder");
   img.setAttribute("title", "Imagen de la actividad");
