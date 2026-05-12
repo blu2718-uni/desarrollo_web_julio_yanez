@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <title>Actividades DCC</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body>
-        <header class="main-header">
-            <h1 class="titulo" id="titulo-index">Actividades DCC</h1>
-            <p class="subtitulo">Registro y seguimiento de actividades extracurriculares del Departamento de Ciencias de la Computación</p>
-        </header>
-        <ul class="menu-botones" id="botones-index">
-            <li><button type="button" class="boton-menu" id="a-registro-por-index" onclick="window.location.href = './registro.html'">Registrar actividad</button></li>
-            <li><button type="button" class="boton-menu" id="a-entradas-por-index" onclick="window.location.href = './entradas.html'">Actividades registradas</button></li>
-            <li><button type="button" class="boton-menu" id="a-metricas-por-index" onclick="window.location.href = './metricas.html'">Estadísticas de actividades</button></li>
-        </ul>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% block title %} Actividades DCC {% endblock %}
+{% block content %}
+<header class="main-header">
+    <h1 class="titulo" id="titulo-index">Actividades DCC</h1>
+    <p class="subtitulo">Registro y seguimiento de actividades extracurriculares del Departamento de Ciencias de la Computación</p>
+</header>
+<ul class="menu-botones" id="botones-index">
+    <li><button type="button" class="boton-menu" id="a-registro-por-index" onclick="window.location.href = '{{ url_for('registro') }}' ; ">Registrar actividad</button></li>
+    <li><button type="button" class="boton-menu" id="a-entradas-por-index" onclick="window.location.href = '{{ url_for('entradas') }}' ; ">Actividades registradas</button></li>
+    <li><button type="button" class="boton-menu" id="a-metricas-por-index" onclick="window.location.href = '{{ url_for('metricas') }}' ; ">Estadísticas de actividades</button></li>
+</ul>
+{% endblock %}

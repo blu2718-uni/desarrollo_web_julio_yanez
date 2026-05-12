@@ -1,46 +1,38 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-      <meta charset="utf-8">
-      <title>Entradas</title>
-      <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body>
-      <h1 class="titulo" id="titulo-entradas">Actividades Registradas</h1>
-      <div class="a-index-container">
-        <button type="button" class="a-index-universal" id="a-index-por-entradas" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
-      </div>
+{% extends 'base.html' %}
+{% block title %} Entradas {% endblock %}
+{% block content %}
+<h1 class="titulo" id="titulo-entradas">Actividades Registradas</h1>
+  <div class="tabla-filtro">
+    <label class="input-label" for="filtro-tipo">Filtrar por tipo:</label>
+    <select class="input-select" name="filtro-tipo" id="filtro-tipo" onchange="filtradoTabla()">
+      <option value="">Todos los tipos</option>
+      <option value="deportiva">Deportiva</option>
+      <option value="recreativa">Recreativa</option>
+      <option value="artística">Artística</option>
+      <option value="social">Social</option>
+      <option value="tecnológica">Tecnológica</option>
+      <option value="otro">Otro</option>
+    </select>
+  </div>
 
-        <div class="tabla-filtro">
-          <label class="input-label" for="filtro-tipo">Filtrar por tipo:</label>
-          <select class="input-select" name="filtro-tipo" id="filtro-tipo" onchange="filtradoTabla()">
-            <option value="">Todos los tipos</option>
-            <option value="deportiva">Deportiva</option>
-            <option value="recreativa">Recreativa</option>
-            <option value="artística">Artística</option>
-            <option value="social">Social</option>
-            <option value="tecnológica">Tecnológica</option>
-            <option value="otro">Otro</option>
-          </select>
-        </div>
+<div class="selecion-pagina" id="paginas"></div>
 
-      <div class="selecion-pagina" id="paginas"></div>
-      
-      <table class="tabla" id="entradas">
-        <thead class="encabezado-tablas" id="entradas-encabezado">
-          <tr>
-            <th onclick="ordenarTabla(0)">Nombre</th>
-            <th onclick="ordenarTabla(1)">Correo</th>
-            <th onclick="ordenarTabla(2)">Rol</th>
-            <th onclick="ordenarTabla(3)">Nombre de la actividad</th>
-            <th onclick="ordenarTabla(4)">Tipo de actividad</th>
-            <th onclick="ordenarTabla(5)">Fecha de la actividad</th>
-          </tr>
-        </thead>
-        <tbody class="datos-tablas" id="entradas-datos">
-        </tbody>
-      </table>
-      <div class="extra-info" id="info-de-dato"></div>
-      <script src="js/entradas.js"></script>
-    </body>
-</html>
+<table class="tabla" id="entradas">
+  <thead class="encabezado-tablas" id="entradas-encabezado">
+    <tr>
+      <th onclick="ordenarTabla(0)">Nombre</th>
+      <th onclick="ordenarTabla(1)">Correo</th>
+      <th onclick="ordenarTabla(2)">Rol</th>
+      <th onclick="ordenarTabla(3)">Nombre de la actividad</th>
+      <th onclick="ordenarTabla(4)">Tipo de actividad</th>
+      <th onclick="ordenarTabla(5)">Fecha de la actividad</th>
+    </tr>
+  </thead>
+  <tbody class="datos-tablas" id="entradas-datos">
+  </tbody>
+</table>
+<div class="extra-info" id="info-de-dato"></div>
+{% endblock %}
+{% block javascript %}
+<script src="js/entradas.js"></script>
+{% endblock %}

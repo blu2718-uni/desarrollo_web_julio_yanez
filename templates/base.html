@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  </head>
+  <body>
+    {% if a_index %}
+    <div class="a-index-container">
+      <button type="button" class="a-index-universal" id="a-index-por-entradas" onclick="window.location.href = '{{ url_for('index') }}' ; ">Regresar a la página principal</button>
+    </div>
+    {% endif %}
+    {% block content %}
+    {% endblock %} 
+    {% block javascript %}
+    {% endblock %}
+  </body>
+</html>

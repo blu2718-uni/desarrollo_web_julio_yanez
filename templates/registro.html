@@ -1,64 +1,57 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <title>Registro</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body>
-        <h1 class="titulo" id="titulo-registro">Registro</h1>
-        <div class="a-index-container">   
-            <button type="button" class="a-index-universal" id="a-index-por-registro" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
+{% extends 'base.html' %}
+{% block title %} Registro {% endblock %}
+{% block content %}
+<h1 class="titulo" id="titulo-registro">Registro</h1>
+<div class="validacion" id="validacion-registro" hidden>
+    <h1 id="mensajes-validacion"></h1>
+    <ul id="lista-validacion"></ul>
+</div>
+<form class="formulario" id="registro">
+    <h1>Información personal</h1>
+        <div class="pieza-formulario" id="datos-personales">
+            <label class="input-label" for="nombre">Nombre: <span class="instrucciones-formulario">Coloque su nombre y dos apellidos</span></label>
+            <input class="input" name="nombre" id="nombre" required>
+            <label class="input-label" for="email">Correo institucional: <span class="instrucciones-formulario">Los dominios válidos son ing.uchile.cl, ug.uchile.cl y dcc.uchile.cl</span></label>
+            <input class="input" name="email" id="email" required>
+            <label class="input-label" for="rol">¿Usted es un?:</label>
+
+            <select class="input-select" name="rol" id="rol" required>
+                <option value="">- Elja un elemento -</option>
+                <option value="pregrado">Estudiante de pregrado</option>
+                <option value="postgrado">Estudiante de postgrado</option>
+                <option value="academico">Académico</option>
+                <option value="funcionario">Funcionario</option>
+            </select>
         </div>
-        <div class="validacion" id="validacion-registro" hidden>
-            <h1 id="mensajes-validacion"></h1>
-            <ul id="lista-validacion"></ul>
+    <h1>Información sobre la actividad</h1>
+        <div class="pieza-formulario" id="info-actividad">
+            <label class="input-label" for="nombre-actividad">Nombre de la actividad:</label>
+            <input class="input" name="nombre-actividad" id="nombre-actividad" required>
+            <label class="input-label" for="tipo">Tipo de actividad:</label>
+
+            <select class="input-select" name="tipo" id="tipo" required>
+                <option value="">- Elja un elemento -</option>
+                <option value="deportiva">Deportiva</option>
+                <option value="recreativa">Recreativa</option>
+                <option value="artistica">Artística</option>
+                <option value="social">Social</option>
+                <option value="tecnologica">Tecnológica</option>
+                <option value="otro">Otro</option>
+            </select>
+
+            <label class="input-label" for="fecha">Fecha de la actividad</label>
+            <input class="input" type="datetime-local" name="fecha" id="fecha" required>
+            <label class="input-label" for="horas">Duración de la actividad <span class="instrucciones-formulario">En horas</span></label>
+            <input class="input" type="number" name="horas" id="horas" required>
+            <label class="input-label" for="medios">Imagen o video relacionado con la habilidad <span class="instrucciones-formulario">Foto o video que se tomó de la actividad, puede ser una tomada por usted o un tercero</span></label>
+            <input class="input" type="file" name="medios" id="medios" required>
+
+            <label class="input-label" for="link">Enlace relacionado con la actividad<span class="instrucciones-formulario">Enlace al sitio o publicación desde el cual descubrió la actividad</span></label>
+            <input class="input" type="url" name="link" id="link" required>
         </div>
-        <form class="formulario" id="registro">
-            <h1>Información personal</h1>
-                <div class="pieza-formulario" id="datos-personales">
-                    <label class="input-label" for="nombre">Nombre: <span class="instrucciones-formulario">Coloque su nombre y dos apellidos</span></label>
-                    <input class="input" name="nombre" id="nombre" required>
-                    <label class="input-label" for="email">Correo institucional: <span class="instrucciones-formulario">Los dominios válidos son ing.uchile.cl, ug.uchile.cl y dcc.uchile.cl</span></label>
-                    <input class="input" name="email" id="email" required>
-                    <label class="input-label" for="rol">¿Usted es un?:</label>
-
-                    <select class="input-select" name="rol" id="rol" required>
-                        <option value="">- Elja un elemento -</option>
-                        <option value="pregrado">Estudiante de pregrado</option>
-                        <option value="postgrado">Estudiante de postgrado</option>
-                        <option value="academico">Académico</option>
-                        <option value="funcionario">Funcionario</option>
-                    </select>
-                </div>
-            <h1>Información sobre la actividad</h1>
-                <div class="pieza-formulario" id="info-actividad">
-                    <label class="input-label" for="nombre-actividad">Nombre de la actividad:</label>
-                    <input class="input" name="nombre-actividad" id="nombre-actividad" required>
-                    <label class="input-label" for="tipo">Tipo de actividad:</label>
-
-                    <select class="input-select" name="tipo" id="tipo" required>
-                        <option value="">- Elja un elemento -</option>
-                        <option value="deportiva">Deportiva</option>
-                        <option value="recreativa">Recreativa</option>
-                        <option value="artistica">Artística</option>
-                        <option value="social">Social</option>
-                        <option value="tecnologica">Tecnológica</option>
-                        <option value="otro">Otro</option>
-                    </select>
-
-                    <label class="input-label" for="fecha">Fecha de la actividad</label>
-                    <input class="input" type="datetime-local" name="fecha" id="fecha" required>
-                    <label class="input-label" for="horas">Duración de la actividad <span class="instrucciones-formulario">En horas</span></label>
-                    <input class="input" type="number" name="horas" id="horas" required>
-                    <label class="input-label" for="medios">Imagen o video relacionado con la habilidad <span class="instrucciones-formulario">Foto o video que se tomó de la actividad, puede ser una tomada por usted o un tercero</span></label>
-                    <input class="input" type="file" name="medios" id="medios" required>
-
-                    <label class="input-label" for="link">Enlace relacionado con la actividad<span class="instrucciones-formulario">Enlace al sitio o publicación desde el cual descubrió la actividad</span></label>
-                    <input class="input" type="url" name="link" id="link" required>
-                </div>
-                <button type="submit" class="boton-submit" id="envio-actividad" onclick="validarRegistro(event)">Registrar actividad</button>
-        </form>
-        <script src="js/registro.js"></script>
-    </body>
-</html>
+        <button type="submit" class="boton-submit" id="envio-actividad" onclick="validarRegistro(event)">Registrar actividad</button>
+</form>
+{% endblock %}
+{% block javascript %}
+<script src="js/registro.js"></script>
+{% endblock %}

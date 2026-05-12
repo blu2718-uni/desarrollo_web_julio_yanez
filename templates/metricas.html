@@ -1,86 +1,77 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <title>Métricas</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body>
-        <h1 class="titulo" id="titulo-metricas">Métricas</h1>
-        <div class="a-index-container">
-            <button type="button" class="a-index-universal" id="a-index-por-metricas" onclick="window.location.href = './index.html'">Regresar a la página principal</button>
-        </div>
-        <table class="tabla">
-            <caption>Estadísticas básicas</caption>
-            <thead class="encabezado-tablas">
-                <tr>
-                <th>Métrica</th>
-                <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody class="datos-tablas">
-            <tr>
-                <td><strong>Total de actividades</strong></td>
-                <td>30</td>
-            </tr>
-            <tr>
-                <td><strong>Total de horas</strong></td>
-                <td>115 h</td>
-            </tr>
-            <tr>
-                <td><strong>Promedio de horas por actividad</strong></td>
-                <td>3.83 h</td>
-            </tr>
-            </tbody>
-        </table>
-        <table class="tabla">
-            <caption>Actividades mas largas</caption>
-            <thead class="encabezado-tablas">
-            <tr>
-                <th>Nombre</th>
-                <th>Actividad</th>
-                <th>Horas</th>
-                <th>Enlace</th>
-            </tr>
-            </thead>
-            <tbody class="datos-tablas">
-            <tr>
-                <td><strong>Diego Sebastián Martínez</strong></td>
-                <td>Hackathon de Inteligencia Artificial</td>
-                <td><strong>12</strong></td>
-                <td><a href="https://dcc.uchile.cl/hackathon-ia">https://dcc.uchile.cl/hackathon-ia</a></td>
-            </tr>
-            <tr>
+{% extends 'base.html' %}
+{% block title %} Métricas {% endblock %}
+{% block content %}
+<h1 class="titulo" id="titulo-metricas">Métricas</h1>
+<table class="tabla">
+    <caption>Estadísticas básicas</caption>
+    <thead class="encabezado-tablas">
+        <tr>
+        <th>Métrica</th>
+        <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody class="datos-tablas">
+    <tr>
+        <td><strong>Total de actividades</strong></td>
+        <td>30</td>
+    </tr>
+    <tr>
+        <td><strong>Total de horas</strong></td>
+        <td>115 h</td>
+    </tr>
+    <tr>
+        <td><strong>Promedio de horas por actividad</strong></td>
+        <td>3.83 h</td>
+    </tr>
+    </tbody>
+</table>
+<table class="tabla">
+    <caption>Actividades mas largas</caption>
+    <thead class="encabezado-tablas">
+    <tr>
+        <th>Nombre</th>
+        <th>Actividad</th>
+        <th>Horas</th>
+        <th>Enlace</th>
+    </tr>
+    </thead>
+    <tbody class="datos-tablas">
+    <tr>
+        <td><strong>Diego Sebastián Martínez</strong></td>
+        <td>Hackathon de Inteligencia Artificial</td>
+        <td><strong>12</strong></td>
+        <td><a href="https://dcc.uchile.cl/hackathon-ia">https://dcc.uchile.cl/hackathon-ia</a></td>
+    </tr>
+    <tr>
 
-                <td><strong>Pedro Antonio Soto</strong></td>
-                <td>Jornada de Integración Laboral</td>
-                <td><strong>8</strong></td>
-                <td><a href="https://www.uchile.cl/bienestar/integracion">https://www.uchile.cl/bienestar/integracion</a></td>
-            </tr>
-            <tr>
-                <td><strong>Daniela Constanza Díaz</strong></td>
-                <td>Voluntariado Comunitario</td>
-                <td><strong>6</strong></td>
-                <td><a href="https://www.uchile.cl/extension/voluntariado">https://www.uchile.cl/extension/voluntariado</a></td>
-            </tr>
-            <tr>
-                <td><strong>Patricia Alejandra Valenzuela</strong></td>
-                <td>Taller de Escultura en Piedra</td>
-                <td><strong>6</strong></td>
-                <td><a href="https://artes.uchile.cl/escultura-piedra">https://artes.uchile.cl/escultura-piedra</a></td>
-            </tr>
-            <tr>
-                <td><strong>Javiera Ignacia Cortés</strong></td>
-                <td>Competencia de E-Sports: Valorant</td>
-                <td><strong>6</strong></td>
-                <td><a href="https://deportes.uchile.cl/esports-valorant">https://deportes.uchile.cl/esports-valorant</a></td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="graficos-container">
-            <img src="img/line-chart.png" alt="Actividades por métricas" class="chart" id="grafico-metricas">
-            <img src="img/pie-chart.png" alt="Actividades por tipo" class="chart" id="grafico-tipo">
-            <img src="img/other-pie-chart.png" alt="Actividades por rol" class="chart" id="grafico-rol">
-        </div>
-    </body>
-</html>
+        <td><strong>Pedro Antonio Soto</strong></td>
+        <td>Jornada de Integración Laboral</td>
+        <td><strong>8</strong></td>
+        <td><a href="https://www.uchile.cl/bienestar/integracion">https://www.uchile.cl/bienestar/integracion</a></td>
+    </tr>
+    <tr>
+        <td><strong>Daniela Constanza Díaz</strong></td>
+        <td>Voluntariado Comunitario</td>
+        <td><strong>6</strong></td>
+        <td><a href="https://www.uchile.cl/extension/voluntariado">https://www.uchile.cl/extension/voluntariado</a></td>
+    </tr>
+    <tr>
+        <td><strong>Patricia Alejandra Valenzuela</strong></td>
+        <td>Taller de Escultura en Piedra</td>
+        <td><strong>6</strong></td>
+        <td><a href="https://artes.uchile.cl/escultura-piedra">https://artes.uchile.cl/escultura-piedra</a></td>
+    </tr>
+    <tr>
+        <td><strong>Javiera Ignacia Cortés</strong></td>
+        <td>Competencia de E-Sports: Valorant</td>
+        <td><strong>6</strong></td>
+        <td><a href="https://deportes.uchile.cl/esports-valorant">https://deportes.uchile.cl/esports-valorant</a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="graficos-container">
+    <img src="img/line-chart.png" alt="Actividades por métricas" class="chart" id="grafico-metricas">
+    <img src="img/pie-chart.png" alt="Actividades por tipo" class="chart" id="grafico-tipo">
+    <img src="img/other-pie-chart.png" alt="Actividades por rol" class="chart" id="grafico-rol">
+</div>
+{% endblock %}
