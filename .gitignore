@@ -1,1 +1,5 @@
 .vscode/settings.json
+__pycache__/
+static/js/datos_estaticos.js
+static/js/datos.json
+static/js/datos_miembros.json
