@@ -6,12 +6,12 @@
     <label class="input-label" for="filtro-tipo">Filtrar por tipo:</label>
     <select class="input-select" name="filtro-tipo" id="filtro-tipo" onchange="filtradoTabla()">
       <option value="">Todos los tipos</option>
-      <option value="deportiva">Deportiva</option>
-      <option value="recreativa">Recreativa</option>
-      <option value="artística">Artística</option>
-      <option value="social">Social</option>
-      <option value="tecnológica">Tecnológica</option>
-      <option value="otro">Otro</option>
+      <option value="Deportiva">Deportiva</option>
+      <option value="Recreativa">Recreativa</option>
+      <option value="Artística">Artística</option>
+      <option value="Social">Social</option>
+      <option value="Tecnológica">Tecnológica</option>
+      <option value="Otro">Otro</option>
     </select>
   </div>
 
@@ -34,5 +34,18 @@
 <div class="extra-info" id="info-de-dato"></div>
 {% endblock %}
 {% block javascript %}
-<script src="js/entradas.js"></script>
+<script src="{{ url_for('static', filename='js/entradas.js') }}"></script>
+<script>
+window.data = window.data || [];
+fetch('/static/js/datos.json')
+  .then(r => r.json())
+  .then(json => {
+    window.data = json;
+    construirTabla(1);
+  })
+  .catch(() => {
+    window.data = [];
+    document.getElementById("entradas-datos").innerHTML = '<tr><th colspan="6">No hay actividades registradas.</th></tr>';
+  });
+</script>
 {% endblock %}

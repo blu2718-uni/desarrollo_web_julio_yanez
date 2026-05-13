@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 import filetype
 import hashlib
+import json
 import os
 import re
 
@@ -161,7 +162,8 @@ def registro():
             duracion=horas,
             tipo=tipo,
             nombre=nombre_actividad,
-            descripcion=descripcion
+            descripcion=descripcion,
+            link=request.form.get('link', '').strip()
         )
         db_session.add(actividad)
         db_session.flush()
@@ -196,8 +198,56 @@ def registro():
         db_session.close()
 
 
+TIPOS_CAPITALIZADOS = {
+    'deporte': 'Deportiva',
+    'recreación': 'Recreativa',
+    'arte': 'Artística',
+    'social': 'Social',
+    'tecnología': 'Tecnológica',
+    'otra': 'Otro'
+}
+
+ROLES_CAPITALIZADOS = {
+    'pregrado': 'Pregrado',
+    'postgrado': 'Postgrado',
+    'academico': 'Académico',
+    'funcionario': 'Funcionario'
+}
+
 @app.route("/entradas", methods=["GET"])
 def entradas():
+    db_session = SessionLocal()
+    try:
+        actividades = db_session.query(Actividad).options(
+            joinedload(Actividad.miembro).joinedload(Miembro.comuna),
+            joinedload(Actividad.fotos)
+        ).order_by(Actividad.id.desc()).all()
+
+        datos = []
+        for act in actividades:
+            miembro = act.miembro
+            fotos = [f"/static/uploads/{foto.nombre_archivo}" for foto in act.fotos]
+            datos.append({
+                "nombre": miembro.nombre,
+                "email": miembro.email,
+                "rol": ROLES_CAPITALIZADOS.get(miembro.rol, miembro.rol),
+                "nombre-actividad": act.nombre,
+                "tipo": TIPOS_CAPITALIZADOS.get(act.tipo, act.tipo),
+                "fecha": f"{act.dia} a las {act.hora_inicio}",
+                "horas": int(act.duracion) if act.duracion.isdigit() else act.duracion,
+                "link": act.link or "",
+                "descripcion": act.descripcion or "",
+                "fotos": fotos
+            })
+    except Exception:
+        datos = []
+    finally:
+        db_session.close()
+
+    json_path = os.path.join(app.root_path, 'static', 'js', 'datos.json')
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump(datos, f, ensure_ascii=False, indent=2)
+
     return render_template("entradas.html", a_index=True)
 
 
