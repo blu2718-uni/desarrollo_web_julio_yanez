@@ -32,6 +32,37 @@
   </tbody>
 </table>
 <div class="extra-info" id="info-de-dato"></div>
+
+<hr class="separador-seccion">
+
+<h1 class="titulo" id="titulo-miembros">Miembros Registrados</h1>
+<div class="tabla-filtro">
+  <label class="input-label" for="filtro-rol-miembros">Filtrar por rol:</label>
+  <select class="input-select" name="filtro-rol-miembros" id="filtro-rol-miembros" onchange="filtradoTablaMiembros()">
+    <option value="">Todos los roles</option>
+    <option value="Pregrado">Pregrado</option>
+    <option value="Postgrado">Postgrado</option>
+    <option value="Académico">Académico</option>
+    <option value="Funcionario">Funcionario</option>
+  </select>
+</div>
+
+<div class="selecion-pagina" id="paginas-miembros"></div>
+
+<table class="tabla" id="miembros">
+  <thead class="encabezado-tablas" id="miembros-encabezado">
+    <tr>
+      <th onclick="ordenarTablaMiembros(0)">Nombre</th>
+      <th onclick="ordenarTablaMiembros(1)">Correo</th>
+      <th onclick="ordenarTablaMiembros(2)">Teléfono</th>
+      <th onclick="ordenarTablaMiembros(3)">Comuna</th>
+      <th onclick="ordenarTablaMiembros(4)">Rol</th>
+    </tr>
+  </thead>
+  <tbody class="datos-tablas" id="miembros-datos">
+  </tbody>
+</table>
+<div class="extra-info" id="info-de-miembro"></div>
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/entradas.js') }}"></script>
@@ -46,6 +77,20 @@ fetch('/static/js/datos.json')
   .catch(() => {
     window.data = [];
     document.getElementById("entradas-datos").innerHTML = '<tr><th colspan="6">No hay actividades registradas.</th></tr>';
+  });
+</script>
+<script src="{{ url_for('static', filename='js/miembros.js') }}"></script>
+<script>
+window.miembrosData = window.miembrosData || [];
+fetch('/static/js/datos_miembros.json')
+  .then(r => r.json())
+  .then(json => {
+    window.miembrosData = json;
+    construirTablaMiembros(1);
+  })
+  .catch(() => {
+    window.miembrosData = [];
+    document.getElementById("miembros-datos").innerHTML = '<tr><th colspan="5">No hay miembros registrados.</th></tr>';
   });
 </script>
 {% endblock %}

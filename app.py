@@ -248,6 +248,39 @@ def entradas():
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(datos, f, ensure_ascii=False, indent=2)
 
+    db_session = SessionLocal()
+    try:
+        miembros = db_session.query(Miembro).options(
+            joinedload(Miembro.comuna),
+            joinedload(Miembro.actividades)
+        ).order_by(Miembro.id.desc()).all()
+
+        datos_miembros = []
+        for m in miembros:
+            actividades_lista = []
+            for act in m.actividades:
+                actividades_lista.append({
+                    "nombre": act.nombre,
+                    "tipo": TIPOS_CAPITALIZADOS.get(act.tipo, act.tipo),
+                    "fecha": f"{act.dia} a las {act.hora_inicio}"
+                })
+            datos_miembros.append({
+                "nombre": m.nombre,
+                "email": m.email,
+                "telefono": m.telefono or "",
+                "comuna": m.comuna.nombre if m.comuna else "",
+                "rol": ROLES_CAPITALIZADOS.get(m.rol, m.rol),
+                "actividades": actividades_lista
+            })
+    except Exception:
+        datos_miembros = []
+    finally:
+        db_session.close()
+
+    json_path_miembros = os.path.join(app.root_path, 'static', 'js', 'datos_miembros.json')
+    with open(json_path_miembros, 'w', encoding='utf-8') as f:
+        json.dump(datos_miembros, f, ensure_ascii=False, indent=2)
+
     return render_template("entradas.html", a_index=True)
 
 
