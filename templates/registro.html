@@ -3,7 +3,7 @@
 {% block content %}
 <h1 class="titulo" id="titulo-registro">Registro</h1>
 <div class="validacion" id="validacion-registro" {% if not errores %}hidden{% endif %}>
-    <h1 id="mensajes-validacion">Los siguientes campos son inválidos o están vacios:</h1>
+    <h2 id="mensajes-validacion">Los siguientes campos son inválidos o están vacios:</h2>
     <ul id="lista-validacion">
         {% for error in errores %}
         <li>{{ error }}</li>
@@ -11,7 +11,7 @@
     </ul>
 </div>
 <form class="formulario" id="registro" method="POST" action="{{ url_for('registro') }}" enctype="multipart/form-data">
-    <h1>Información personal</h1>
+    <h2>Información personal</h2>
         <div class="pieza-formulario" id="datos-personales">
             <label class="input-label" for="nombre">Nombre: <span class="instrucciones-formulario">Coloque su nombre y dos apellidos. Ej: Paco Perez Pereira</span></label>
             <input class="input" type="text" name="nombre" id="nombre" value="{{ request.form.get('nombre', '') }}" required>
@@ -37,7 +37,7 @@
                 {% endfor %}
             </select>
         </div>
-    <h1>Información sobre la actividad</h1>
+    <h2>Información sobre la actividad</h2>
         <div class="pieza-formulario" id="info-actividad">
             <label class="input-label" for="nombre-actividad">Nombre de la actividad:</label>
             <input class="input" name="nombre-actividad" id="nombre-actividad" value="{{ request.form.get('nombre-actividad', '') }}" required>
