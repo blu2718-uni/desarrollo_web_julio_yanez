@@ -54,6 +54,7 @@ class Actividad(Base):
     tipo = Column(Enum('arte', 'deporte', 'tecnología', 'social', 'recreación', 'otra'), nullable=False)
     nombre = Column(String(45), nullable=False)
     descripcion = Column(Text(500), nullable=True)
+    link = Column(String(300), nullable=True)
 
     miembro = relationship("Miembro", back_populates="actividades")
     fotos = relationship("Foto", back_populates="actividad")

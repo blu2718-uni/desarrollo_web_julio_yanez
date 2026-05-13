@@ -78,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `tarea2`.`actividad` (
   `tipo` ENUM('arte', 'deporte', 'tecnología', 'social', 'recreación', 'otra') NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` TEXT(500) NULL,
+  `link` VARCHAR(300) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_actividad_miembro1_idx` (`miembro_id` ASC),
   CONSTRAINT `fk_actividad_miembro1`
