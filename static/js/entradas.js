@@ -57,9 +57,11 @@ const actualizarTabla = (paginaActual) => {
     selectorPagina.href = "#"
     selectorPagina.innerText = i;
 
-    selectorPagina.onclick = function () {
+    selectorPagina.onclick = function (e) {
+      e.preventDefault();
       construirTabla(i);
       filtradoTabla();
+      return false;
     };
     
     if (i === paginaActual) {

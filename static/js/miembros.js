@@ -53,9 +53,11 @@ const actualizarTablaMiembros = (paginaActual) => {
     selectorPagina.href = "#";
     selectorPagina.innerText = i;
 
-    selectorPagina.onclick = function () {
+    selectorPagina.onclick = function (e) {
+      e.preventDefault();
       construirTablaMiembros(i);
       filtradoTablaMiembros();
+      return false;
     };
 
     if (i === paginaActual) {
