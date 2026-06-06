@@ -1,11 +1,12 @@
 from flask import Flask, request, render_template, redirect, url_for, session, jsonify
-from database.db import Miembro, Actividad, Foto, Comuna, SessionLocal
+from database.db import Miembro, Actividad, Foto, Comuna, Comentario, SessionLocal
 from sqlalchemy.orm import joinedload
 from sqlalchemy import func
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import filetype
 import hashlib
+import html
 import json
 import os
 import re
@@ -342,6 +343,27 @@ def actividades_por_comuna():
     finally:
         db_session.close()
 
+
+@app.route("/comentarios/<int:actividad_id>", methods=["GET"])
+def listar_comentarios(actividad_id):
+    db_session = SessionLocal()
+    try:
+        comentarios = db_session.query(Comentario).filter(
+            Comentario.actividad_id == actividad_id
+        ).order_by(Comentario.fecha.desc()).all()
+
+        datos = []
+        for c in comentarios:
+            datos.append({
+                "nombre": c.nombre,
+                "texto": c.texto,
+                "fecha": c.fecha.strftime("%Y-%m-%d %H:%M:%S")
+            })
+        return jsonify(datos)
+    except Exception:
+        return jsonify([]), 500
+    finally:
+        db_session.close()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
