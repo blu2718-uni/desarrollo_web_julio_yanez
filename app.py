@@ -1,6 +1,7 @@
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, session, jsonify
 from database.db import Miembro, Actividad, Foto, Comuna, SessionLocal
 from sqlalchemy.orm import joinedload
+from sqlalchemy import func
 from werkzeug.utils import secure_filename
 from datetime import datetime
 import filetype
@@ -287,6 +288,59 @@ def entradas():
 @app.route("/metricas", methods=["GET"])
 def metricas():
     return render_template("metricas.html", a_index=True)
+
+
+@app.route("/estadisticas/miembros-por-dia", methods=["GET"])
+def miembros_por_dia():
+    db_session = SessionLocal()
+    try:
+        resultados = db_session.query(
+            func.date(Miembro.fecha_registro).label("dia"),
+            func.count(Miembro.id).label("cantidad")
+        ).group_by(func.date(Miembro.fecha_registro)).order_by("dia").all()
+
+        datos = [{"dia": str(r.dia), "cantidad": r.cantidad} for r in resultados]
+        return jsonify(datos)
+    except Exception:
+        return jsonify([]), 500
+    finally:
+        db_session.close()
+
+
+@app.route("/estadisticas/actividades-por-tipo", methods=["GET"])
+def actividades_por_tipo():
+    db_session = SessionLocal()
+    try:
+        resultados = db_session.query(
+            Actividad.tipo,
+            func.count(Actividad.id).label("cantidad")
+        ).group_by(Actividad.tipo).all()
+
+        datos = [{"tipo": r.tipo, "cantidad": r.cantidad} for r in resultados]
+        return jsonify(datos)
+    except Exception:
+        return jsonify([]), 500
+    finally:
+        db_session.close()
+
+
+@app.route("/estadisticas/actividades-por-comuna", methods=["GET"])
+def actividades_por_comuna():
+    db_session = SessionLocal()
+    try:
+        resultados = db_session.query(
+            Comuna.nombre,
+            func.count(Actividad.id).label("cantidad")
+        ).join(Miembro, Miembro.comuna_id == Comuna.id
+        ).join(Actividad, Actividad.miembro_id == Miembro.id
+        ).group_by(Comuna.nombre).order_by("cantidad").all()
+
+        datos = [{"comuna": r.nombre, "cantidad": r.cantidad} for r in resultados]
+        return jsonify(datos)
+    except Exception:
+        return jsonify([]), 500
+    finally:
+        db_session.close()
 
 
 if __name__ == "__main__":
