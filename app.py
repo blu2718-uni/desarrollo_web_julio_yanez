@@ -365,5 +365,51 @@ def listar_comentarios(actividad_id):
     finally:
         db_session.close()
 
+
+
+@app.route("/comentarios", methods=["POST"])
+def agregar_comentario():
+    nombre = request.form.get('nombre', '').strip()
+    texto = request.form.get('texto', '').strip()
+    actividad_id = int(request.form.get('actividad_id', ''))
+
+    errores = []
+
+    if not (3 <= len(nombre) <= 80):
+        errores.append("El nombre debe tener entre 3 y 80 caracteres.")
+
+    if len(texto) < 5:
+        errores.append("El comentario debe tener al menos 5 caracteres.")
+
+    if type(actividad_id) != int:
+        errores.append("Identificador de actividad inválido.")
+
+    if errores:
+        return jsonify({"exito": False, "errores": errores}), 400
+
+    db_session = SessionLocal()
+    try:
+        actividad = db_session.query(Actividad).filter(Actividad.id == actividad_id).first()
+        if not actividad:
+            return jsonify({"exito": False, "errores": ["La actividad no existe."]}), 400
+
+        nombre_seguro = html.escape(nombre)
+        texto_seguro = html.escape(texto)
+
+        comentario = Comentario(
+            nombre=nombre_seguro,
+            texto=texto_seguro,
+            actividad_id=actividad_id
+        )
+        db_session.add(comentario)
+        db_session.commit()
+
+        return jsonify({"exito": True, "mensaje": "Comentario agregado correctamente."})
+    except Exception:
+        db_session.rollback()
+        return jsonify({"exito": False, "errores": ["Error al guardar el comentario."]}), 500
+    finally:
+        db_session.close()
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
