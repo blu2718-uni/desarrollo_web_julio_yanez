@@ -134,6 +134,30 @@ const ordenarTabla = (colIndex) => {
     filas.forEach(fila => cuerpo.appendChild(fila));
 }
 
+const cargarComentarios = (actividad_id, indice) => {
+  fetch('/comentarios/' + actividad_id)
+    .then(r => r.json())
+    .then(datos => {
+      const lista = document.getElementById('lista-comentarios-' + indice);
+      lista.innerHTML = '';
+
+      if (datos.length === 0) {
+        lista.innerHTML = '<li>Aún no hay comentarios.</li>';
+        return;
+      }
+
+      for (const c of datos) {
+        const item = document.createElement('li');
+        item.textContent = '[' + c.fecha + '] ' + c.nombre + ': ' + c.texto;
+        lista.appendChild(item);
+      }
+    })
+    .catch(() => {
+      const lista = document.getElementById('lista-comentarios-' + indice);
+      lista.innerHTML = '<li style="color:red;">Error al cargar comentarios.</li>';
+    });
+}
+
 const mostrarInfo = (id) => {
   const info = document.getElementById("info-de-dato");
   const indice = parseInt(id.split("-")[1]);
