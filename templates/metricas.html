@@ -2,7 +2,13 @@
 {% block title %} Métricas {% endblock %}
 {% block content %}
 <h1 class="titulo" id="titulo-metricas">Estadísticas</h1>
+
+<div id="grafico-miembros-dia"></div>
+<div id="grafico-tipos"></div>
+<div id="grafico-comunas"></div>
+
 {% endblock %}
 {% block javascript %}
 <script src="https://code.highcharts.com/highcharts.js"> </script>
+<script src="{{ url_for('static', filename='js/metricas.js') }}"></script>
 {% endblock %}
