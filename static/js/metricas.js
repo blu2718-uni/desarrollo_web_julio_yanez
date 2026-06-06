@@ -39,4 +39,31 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('grafico-miembros-dia').innerHTML =
         '<p style="color:red;">Error al cargar estadísticas de miembros por día.</p>';
     });
+
+  // Gráfico 2: Actividades por tipo (torta)
+  fetch('/estadisticas/actividades-por-tipo')
+    .then(r => r.json())
+    .then(datos => {
+      const dataPie = [];
+      for (const d of datos) {
+        dataPie.push([d.tipo, d.cantidad]);
+      }
+
+      Highcharts.chart('grafico-tipos', {
+        chart: {
+          type: 'pie'
+        },
+        title: {
+          text: 'Actividades por tipo'
+        },
+        series: [{
+          name: 'Actividades',
+          data: dataPie
+        }]
+      });
+    })
+    .catch(() => {
+      document.getElementById('grafico-tipos').innerHTML =
+        '<p style="color:red;">Error al cargar estadísticas de actividades por tipo.</p>';
+    });
 });
