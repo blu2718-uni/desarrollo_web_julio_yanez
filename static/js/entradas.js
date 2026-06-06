@@ -158,6 +158,53 @@ const cargarComentarios = (actividad_id, indice) => {
     });
 }
 
+const enviarComentario = (event, indice) => {
+  event.preventDefault();
+
+  const form = event.target;
+  const errorDiv = document.getElementById('error-comentario-' + indice);
+  errorDiv.style.display = 'none';
+  errorDiv.innerHTML = '';
+
+  const formData = new FormData(form);
+  const nombre = formData.get('nombre').trim();
+  const texto = formData.get('texto').trim();
+
+  const errores = [];
+  if (nombre.length < 3 || nombre.length > 80) {
+    errores.push('El nombre debe tener entre 3 y 80 caracteres.');
+  }
+  if (texto.length < 5) {
+    errores.push('El comentario debe tener al menos 5 caracteres.');
+  }
+
+  if (errores.length > 0) {
+    errorDiv.innerHTML = errores.join('<br>');
+    errorDiv.style.display = 'block';
+    return;
+  }
+
+  fetch('/comentarios', {
+    method: 'POST',
+    body: formData
+  })
+    .then(r => r.json())
+    .then(respuesta => {
+      if (respuesta.exito) {
+        form.reset();
+        const actividad_id = formData.get('actividad_id');
+        cargarComentarios(actividad_id, indice);
+      } else {
+        errorDiv.innerHTML = respuesta.errores.join('<br>');
+        errorDiv.style.display = 'block';
+      }
+    })
+    .catch(() => {
+      errorDiv.innerHTML = 'Error de red al enviar el comentario.';
+      errorDiv.style.display = 'block';
+    });
+}
+
 const mostrarInfo = (id) => {
   const info = document.getElementById("info-de-dato");
   const indice = parseInt(id.split("-")[1]);
