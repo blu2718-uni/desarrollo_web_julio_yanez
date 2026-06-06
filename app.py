@@ -230,6 +230,7 @@ def entradas():
             miembro = act.miembro
             fotos = [f"/static/uploads/{foto.nombre_archivo}" for foto in act.fotos]
             datos.append({
+                "id": act.id,
                 "nombre": miembro.nombre,
                 "email": miembro.email,
                 "rol": ROLES_CAPITALIZADOS.get(miembro.rol, miembro.rol),
