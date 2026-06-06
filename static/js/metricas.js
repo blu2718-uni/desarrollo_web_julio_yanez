@@ -66,4 +66,45 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('grafico-tipos').innerHTML =
         '<p style="color:red;">Error al cargar estadísticas de actividades por tipo.</p>';
     });
+
+  // Gráfico 3: Actividades por comuna (barras)
+  fetch('/estadisticas/actividades-por-comuna')
+    .then(r => r.json())
+    .then(datos => {
+      const comunas = [];
+      const valores = [];
+      for (const d of datos) {
+        comunas.push(d.comuna);
+        valores.push(d.cantidad);
+      }
+
+      Highcharts.chart('grafico-comunas', {
+        chart: {
+          type: 'column'
+        },
+        title: {
+          text: 'Actividades por comuna'
+        },
+        xAxis: {
+          categories: comunas,
+          title: {
+            text: 'Comuna'
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Cantidad de actividades'
+          },
+          allowDecimals: false
+        },
+        series: [{
+          name: 'Actividades',
+          data: valores
+        }]
+      });
+    })
+    .catch(() => {
+      document.getElementById('grafico-comunas').innerHTML =
+        '<p style="color:red;">Error al cargar estadísticas de actividades por comuna.</p>';
+    });
 });
