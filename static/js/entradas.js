@@ -273,19 +273,22 @@ const mostrarInfo = (id) => {
 
   const tituloComentarios = document.createElement('h2');
   tituloComentarios.textContent = 'Comentarios';
+  tituloComentarios.setAttribute('class', 'comentarios-titulo');
   info.appendChild(tituloComentarios);
 
   const listaComentarios = document.createElement('ul');
   listaComentarios.id = 'lista-comentarios-' + indice;
+  listaComentarios.setAttribute('class', 'comentarios-lista');
   info.appendChild(listaComentarios);
 
   const errorDiv = document.createElement('div');
   errorDiv.id = 'error-comentario-' + indice;
   errorDiv.style.display = 'none';
-  errorDiv.style.color = 'red';
+  errorDiv.setAttribute('class', 'comentarios-error');
   info.appendChild(errorDiv);
 
   const form = document.createElement('form');
+  form.setAttribute('class', 'comentarios-form');
   form.onsubmit = function(e) { enviarComentario(e, indice); };
 
   const inputNombre = document.createElement('input');
@@ -295,6 +298,7 @@ const mostrarInfo = (id) => {
   inputNombre.minLength = 3;
   inputNombre.maxLength = 80;
   inputNombre.required = true;
+  inputNombre.setAttribute('class', 'comentarios-input');
 
   const textareaTexto = document.createElement('textarea');
   textareaTexto.name = 'texto';
@@ -303,6 +307,7 @@ const mostrarInfo = (id) => {
   textareaTexto.cols = 50;
   textareaTexto.minLength = 5;
   textareaTexto.required = true;
+  textareaTexto.setAttribute('class', 'comentarios-textarea');
 
   const inputHidden = document.createElement('input');
   inputHidden.type = 'hidden';
@@ -312,11 +317,10 @@ const mostrarInfo = (id) => {
   const boton = document.createElement('button');
   boton.type = 'submit';
   boton.textContent = 'Agregar comentario';
+  boton.setAttribute('class', 'comentarios-boton');
 
   form.appendChild(inputNombre);
-  form.appendChild(document.createElement('br'));
   form.appendChild(textareaTexto);
-  form.appendChild(document.createElement('br'));
   form.appendChild(inputHidden);
   form.appendChild(boton);
 
