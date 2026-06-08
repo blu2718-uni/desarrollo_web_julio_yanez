@@ -375,3 +375,87 @@ figcaption {
 .graficos-container .chart:hover {
     box-shadow: 0 4px 24px #1f293717;
 }
+
+.comentarios-titulo {
+    font-family: 'Source Serif 4';
+    font-size: 24px;
+    font-weight: 600;
+    color: #1F2937;
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+.comentarios-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.comentarios-lista li {
+    font-family: 'Inter';
+    font-size: 16px;
+    color: #1F2937;
+    padding: 12px 0;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.comentarios-error {
+    font-family: 'Inter';
+    font-size: 14px;
+    color: #EF4444;
+    margin-bottom: 16px;
+    padding: 8px 0;
+}
+
+.comentarios-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 512px;
+    margin-top: 16px;
+}
+
+.comentarios-input,
+.comentarios-textarea {
+    font-family: 'Inter';
+    font-size: 16px;
+    padding: 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    color: #1F2937;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.comentarios-input:focus,
+.comentarios-textarea:focus {
+    outline: none;
+    border-color: #B91C1C;
+}
+
+.comentarios-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.comentarios-boton {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border: 1px solid #B91C1C;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #B91C1C;
+    color: #FFFFFF;
+    align-self: flex-start;
+}
+
+.comentarios-boton:hover {
+    background-color: #991B1B;
+    border-color: #991B1B;
+}
