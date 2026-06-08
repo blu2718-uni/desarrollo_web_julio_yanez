@@ -270,4 +270,57 @@ const mostrarInfo = (id) => {
   fig.appendChild(img);
   fig.appendChild(figDesc);
   info.appendChild(fig);
+
+  const tituloComentarios = document.createElement('h2');
+  tituloComentarios.textContent = 'Comentarios';
+  info.appendChild(tituloComentarios);
+
+  const listaComentarios = document.createElement('ul');
+  listaComentarios.id = 'lista-comentarios-' + indice;
+  info.appendChild(listaComentarios);
+
+  const errorDiv = document.createElement('div');
+  errorDiv.id = 'error-comentario-' + indice;
+  errorDiv.style.display = 'none';
+  errorDiv.style.color = 'red';
+  info.appendChild(errorDiv);
+
+  const form = document.createElement('form');
+  form.onsubmit = function(e) { enviarComentario(e, indice); };
+
+  const inputNombre = document.createElement('input');
+  inputNombre.type = 'text';
+  inputNombre.name = 'nombre';
+  inputNombre.placeholder = 'Tu nombre';
+  inputNombre.minLength = 3;
+  inputNombre.maxLength = 80;
+  inputNombre.required = true;
+
+  const textareaTexto = document.createElement('textarea');
+  textareaTexto.name = 'texto';
+  textareaTexto.placeholder = 'Escribe tu comentario...';
+  textareaTexto.rows = 4;
+  textareaTexto.cols = 50;
+  textareaTexto.minLength = 5;
+  textareaTexto.required = true;
+
+  const inputHidden = document.createElement('input');
+  inputHidden.type = 'hidden';
+  inputHidden.name = 'actividad_id';
+  inputHidden.value = data[indice]['id'];
+
+  const boton = document.createElement('button');
+  boton.type = 'submit';
+  boton.textContent = 'Agregar comentario';
+
+  form.appendChild(inputNombre);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(textareaTexto);
+  form.appendChild(document.createElement('br'));
+  form.appendChild(inputHidden);
+  form.appendChild(boton);
+
+  info.appendChild(form);
+
+  cargarComentarios(data[indice]['id'], indice);
 }
