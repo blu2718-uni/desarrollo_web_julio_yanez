@@ -1,3 +1,51 @@
+Highcharts.setOptions({
+  colors: ['#B91C1C', '#1F2937', '#6B7280', '#991B1B', '#E5E7EB', '#b5b5b5'],
+  chart: {
+    style: {
+      fontFamily: 'Inter, sans-serif'
+    }
+  },
+  title: {
+    style: {
+      fontFamily: 'Source Serif 4, serif',
+      color: '#1F2937'
+    }
+  },
+  xAxis: {
+    lineColor: '#E5E7EB',
+    tickColor: '#E5E7EB',
+    labels: {
+      style: {
+        color: '#6B7280'
+      }
+    },
+    title: {
+      style: {
+        color: '#1F2937'
+      }
+    }
+  },
+  yAxis: {
+    gridLineColor: '#E5E7EB',
+    labels: {
+      style: {
+        color: '#6B7280'
+      }
+    },
+    title: {
+      style: {
+        color: '#1F2937'
+      }
+    }
+  },
+  legend: {
+    itemStyle: {
+      color: '#1F2937',
+      fontWeight: '500'
+    }
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   // Gráfico 1: Miembros registrados por día (líneas)
   fetch('/estadisticas/miembros-por-dia')
