@@ -166,3 +166,97 @@ function resaltar(contenedor, texto, q) {
     );
   }
 }
+
+// Referencias al dialog de evaluacion (definido en buscar.html)
+const dialogEvaluar = document.getElementById("dialog-evaluar");
+const selectNota = document.getElementById("nota-select");
+const dialogError = document.getElementById("dialog-error");
+const btnConfirmar = document.getElementById("dialog-confirmar");
+const btnCancelar = document.getElementById("dialog-cancelar");
+
+// Actividad que se esta evaluando en el dialog actualmente
+let actividadEvaluandoId = null;
+
+// Abre el dialog para evaluar una actividad
+function abrirDialogEvaluar(event) {
+  actividadEvaluandoId = event.currentTarget.dataset.actividadId;
+  selectNota.value = "";
+  dialogError.hidden = true;
+  dialogError.textContent = "";
+  dialogEvaluar.showModal();
+}
+
+// Cierra el dialog y resetea el estado
+function cerrarDialogEvaluar() {
+  actividadEvaluandoId = null;
+  selectNota.value = "";
+  dialogError.hidden = true;
+  dialogError.textContent = "";
+  dialogEvaluar.close();
+}
+
+// Listener del boton cancelar
+btnCancelar.addEventListener("click", cerrarDialogEvaluar);
+
+// Listener del boton confirmar: valida, POST, actualiza UI
+btnConfirmar.addEventListener("click", async () => {
+  if (actividadEvaluandoId === null) {
+    return;
+  }
+  const notaStr = selectNota.value;
+  if (notaStr === "") {
+    dialogError.textContent = "Debes seleccionar una nota.";
+    dialogError.hidden = false;
+    return;
+  }
+  const nota = parseInt(notaStr, 10);
+  if (isNaN(nota) || nota < 1 || nota > 7) {
+    dialogError.textContent = "La nota debe ser un entero entre 1 y 7.";
+    dialogError.hidden = false;
+    return;
+  }
+
+  // POST /api/notas con JSON {actividadId, nota}
+  try {
+    const response = await fetch("/api/notas", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        actividadId: parseInt(actividadEvaluandoId, 10),
+        nota: nota,
+      }),
+    });
+
+    if (response.status === 400) {
+      const data = await response.json();
+      dialogError.textContent = data.error || "Nota invalida.";
+      dialogError.hidden = false;
+      return;
+    }
+    if (response.status === 404) {
+      dialogError.textContent = "La actividad no existe.";
+      dialogError.hidden = false;
+      return;
+    }
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    actualizarNotaEnUI(actividadEvaluandoId, data.nota);
+    cerrarDialogEvaluar();
+  } catch (error) {
+    console.error("Error al evaluar:", error);
+    dialogError.textContent = "Ocurrio un error al guardar la nota.";
+    dialogError.hidden = false;
+  }
+});
+
+// Actualiza el span .nota-valor de la tarjeta correspondiente
+function actualizarNotaEnUI(actividadId, nuevaNota) {
+  const selector = '.resultado-card[data-actividad-id="' + actividadId + '"] .nota-valor';
+  const spanNota = document.querySelector(selector);
+  if (spanNota) {
+    spanNota.textContent = nuevaNota;
+  }
+}
