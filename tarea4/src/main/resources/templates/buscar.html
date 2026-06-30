@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buscador de Actividades DCC</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/buscar.css}" />
+  </head>
+  <body>
+    <h1 class="titulo">Buscador de Actividades DCC</h1>
+    <p class="subtitulo">Escribe al menos 3 caracteres para buscar actividades por nombre, descripción o comuna.</p>
+
+    <form class="form-buscador" onsubmit="return false">
+      <label class="input-label" for="q">Buscar</label>
+      <input
+        class="input"
+        type="text"
+        id="q"
+        name="q"
+        minlength="3"
+        autocomplete="off"
+        placeholder="Ej: futbol, jardín, Maipú…"
+      />
+    </form>
+
+    <div id="resultados"></div>
+
+    <dialog id="dialog-evaluar" class="dialog-evaluar">
+      <form method="dialog" id="form-evaluar" class="form-evaluar">
+        <h2 class="dialog-titulo">Evaluar actividad</h2>
+        <p class="dialog-mensaje">Selecciona una nota entre 1 y 7 (entero).</p>
+        <label class="input-label" for="nota">Nota</label>
+        <select class="input-select" id="nota-select" required>
+          <option value="">—</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        <option value="7">7</option>
+        </select>
+        <p id="dialog-error" class="dialog-error" hidden></p>
+        <div class="dialog-botones">
+          <button type="button" id="dialog-cancelar" class="boton-cancelar">Cancelar</button>
+          <button type="button" id="dialog-confirmar" class="boton-submit">Confirmar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script th:src="@{/js/buscador.js}"></script>
+  </body>
+</html>
