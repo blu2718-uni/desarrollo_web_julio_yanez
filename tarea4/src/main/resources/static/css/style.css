@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600;700&display=swap');
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter';
+    font-weight: 400;
+    background-color: #FAFAFA;
+    color: #1F2937;
+    line-height: 1.6;
+    padding: 64px;
+}
+
+h1 {
+    font-family: 'Source Serif 4';
+    font-weight: 600;
+}
+
+.titulo {
+    font-family: 'Source Serif 4';
+    font-size: 64px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #1F2937;
+}
+
+.subtitulo {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    color: #6B7280;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.boton-menu,
+.a-index-universal,
+.boton-submit {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 16px;
+    border: 1px solid #B91C1C;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #B91C1C;
+    color: #FFFFFF;
+}
+
+.boton-menu:hover,
+.boton-submit:hover {
+    background-color: #991B1B;
+    border-color: #991B1B;
+}
+
+.a-index-universal {
+    font-family: 'Inter';
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    background: transparent;
+    color: #6B7280;
+    border: none;
+    padding: 8px 0;
+}
+
+.a-index-universal:hover {
+    background: transparent;
+    color: #B91C1C;
+}
+
+.a-index-container {
+    text-align: center;
+    padding-bottom: 32px;
+}
+
+.menu-botones {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+    margin: 32px auto 0;
+    padding: 0;
+}
+
+.menu-botones li {
+    width: 100%;
+}
+
+.menu-botones .boton-menu {
+    width: 100%;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.boton-submit {
+    width: 50%;
+    margin-top: 32px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.formulario {
+    max-width: 512px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 64px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px #1f293717;
+}
+
+.pieza-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.input-label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #1F2937;
+}
+
+.input:focus,
+.input-select:focus {
+    outline: none;
+    border-color: #B91C1C;
+}
+    
+.input,
+.input-select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    color: #1F2937;
+}
+
+.instrucciones-formulario {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6B7280;
+    font-style: italic;
+}
+
+.validacion {
+    max-width: 512px;
+    margin: 0 auto 32px;
+    padding: 32px 64px 32px;
+    background: #FEF2F2;
+    border-left: 4px solid #EF4444;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #ef444432;
+}
+
+.tabla {
+    width: 100%;
+    max-width: 1400px;
+    margin: 32px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #FFFFFF;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px #1f293717;
+}
+
+.encabezado-tablas {
+    background: #FBFBFB;
+    color: #1F2937;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.encabezado-tablas th:hover {
+    color: #B91C1C;
+}
+
+.datos-tablas td {
+    padding: 16px 16px;
+}
+
+.encabezado-tablas th {
+    padding: 16px 16px;
+}
+
+.datos-tablas tr:hover {
+    background: #FAFAFA;
+}
+
+.tabla-filtro {
+    width: 1400px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    gap: 16px;
+}
+
+.tabla caption {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 500;
+    color: #1F2937;
+    margin-bottom: 16px;
+    text-align: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.separador-seccion {
+    margin: 64px auto;
+    max-width: 1400px;
+    border: none;
+    border-top: 1px solid #E5E7EB;
+}
+
+.selecion-pagina {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 16px auto;
+    max-width: 1024px;
+    flex-wrap: wrap;
+}
+
+.selecion-pagina a {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 8px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #1F2937;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.selecion-pagina a:hover {
+    border-color: #B91C1C;
+    color: #B91C1C;
+    text-decoration: none;
+}
+
+.extra-info {
+    max-width: 1400px;
+    margin: 32px auto;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.dato-expandido {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 32px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 4px 24px rgba(31, 41, 55, 0.15);
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.dato-expandido-img {
+    width: 100%;
+    max-width: 512px;
+    height: auto;
+    max-height: 512px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px #1f293717;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.dato-expandido-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dato-expandido-info p {
+    font-family: 'Inter';
+    font-size: 16px;
+    color: #6B7280;
+    margin-bottom: 16px;
+}
+
+figcaption {
+    text-align: center;
+    display: block;
+}
+
+.dato-expandido-lista {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dato-expandido-lista li {
+    font-family: 'Inter';
+    font-size: 16px;
+    color: #1F2937;
+    padding: 8px 0;
+    border-bottom: 1px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dato-expandido-info a {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    color: #B91C1C;
+    font-weight: 500;
+    text-decoration: none;
+
+}
+
+.dato-expandido-info a:hover {
+    text-decoration: underline;
+}
+
+.graficos-container {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    max-width: 1400px;
+    margin: 32px auto;
+    padding: 0 32px;
+    flex-wrap: wrap;
+}
+
+.graficos-container .chart {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px #1f293717;
+
+}
+
+.graficos-container .chart:hover {
+    box-shadow: 0 4px 24px #1f293717;
+}
+
+.comentarios-titulo {
+    font-family: 'Source Serif 4';
+    font-size: 24px;
+    font-weight: 600;
+    color: #1F2937;
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+.comentarios-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.comentarios-lista li {
+    font-family: 'Inter';
+    font-size: 16px;
+    color: #1F2937;
+    padding: 12px 0;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.comentarios-error {
+    font-family: 'Inter';
+    font-size: 14px;
+    color: #EF4444;
+    margin-bottom: 16px;
+    padding: 8px 0;
+}
+
+.comentarios-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 512px;
+    margin-top: 16px;
+}
+
+.comentarios-input,
+.comentarios-textarea {
+    font-family: 'Inter';
+    font-size: 16px;
+    padding: 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    color: #1F2937;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.comentarios-input:focus,
+.comentarios-textarea:focus {
+    outline: none;
+    border-color: #B91C1C;
+}
+
+.comentarios-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.comentarios-boton {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border: 1px solid #B91C1C;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #B91C1C;
+    color: #FFFFFF;
+    align-self: flex-start;
+}
+
+.comentarios-boton:hover {
+    background-color: #991B1B;
+    border-color: #991B1B;
+}
