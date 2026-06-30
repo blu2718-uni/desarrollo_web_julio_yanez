@@ -171,6 +171,23 @@ mark {
     color: #B91C1C;
 }
 
+.boton-confirmar {
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border: 1px solid #B91C1C;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #B91C1C;
+    color: #FFFFFF;
+}
+
+.boton-confirmar:hover {
+    background-color: #991B1B;
+    border-color: #991B1B;
+}
+
 @media (max-width: 768px) {
     body {
         padding: 32px 16px;
