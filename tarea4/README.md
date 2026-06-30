@@ -20,6 +20,9 @@ En cuanto a decisiones:
   Se recalcula tras cada inserción.
 - Debounce de 250 ms en el input para no enviar una petición por cada tecla.
 - Enlaces cruzados: el index de Flask agrega un botón al buscador (`:8081`),
-  y `buscar.html` incluye "Regresar a la página principal" (`:5000`).
+  y `buscar.html` incluye "Regresar a la página principal" (`:5000`). Las
+  URLs se computan con `window.location.hostname` para conservar el host
+  (solo cambia el puerto), de modo que funcionan tanto en `localhost` como
+  en host remoto.
 
 El proyecto de springboot corre en el puerto 8081 por que el puerto 8080 hacía conflicto con un servicio que tenía en el entorno en que hice la tarea.
