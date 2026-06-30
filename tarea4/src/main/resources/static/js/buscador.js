@@ -132,7 +132,37 @@ function crearTarjeta(a, q) {
 }
 
 // Pasa un texto campo por campo, resaltando ocurrencias del patron q
-// appendTextoResaltado se define en la Parte C
 function appendTextoResaltado(contenedor, texto, q) {
   resaltar(contenedor, texto, q);
+}
+
+// Resalta ocurrencias case-insensitive del patron q dentro de texto,
+// enviando nodos text y <mark> al contenedor. No usa innerHTML (anti-XSS).
+function resaltar(contenedor, texto, q) {
+  if (!texto) {
+    return;
+  }
+  const textoStr = String(texto);
+  const patron = q.toLowerCase();
+  const textoLower = textoStr.toLowerCase();
+  let i = 0;
+  let idx = textoLower.indexOf(patron, i);
+
+  while (idx !== -1) {
+    if (idx > i) {
+      contenedor.appendChild(
+        document.createTextNode(textoStr.slice(i, idx))
+      );
+    }
+    const mark = document.createElement("mark");
+    mark.textContent = textoStr.slice(idx, idx + patron.length);
+    contenedor.appendChild(mark);
+    i = idx + patron.length;
+    idx = textoLower.indexOf(patron, i);
+  }
+  if (i < textoStr.length) {
+    contenedor.appendChild(
+      document.createTextNode(textoStr.slice(i))
+    );
+  }
 }
