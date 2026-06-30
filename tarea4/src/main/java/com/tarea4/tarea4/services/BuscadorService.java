@@ -3,6 +3,7 @@ package com.tarea4.tarea4.services;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -66,6 +67,6 @@ public class BuscadorService {
             return "-";
         }
         Double promedio = notaRepository.promedioPorActividad(actividadId);
-        return String.format("%.1f", promedio);
+        return String.format(Locale.US, "%.1f", promedio);
     }
 }
