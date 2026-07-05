@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="a-index-container">
+      <a class="a-index-universal" href="#" onclick="window.location.href = window.location.protocol + '//' + window.location.hostname + ':5000/'; return false;">Regresar a la página principal</a>
+    </div>
+    <h1 class="titulo">Iniciar Sesión</h1>
+    <p class="subtitulo">Accede para administrar fotos o revisar el log de acciones.</p>
+
+    <form class="formulario" th:action="@{/login}" method="post">
+      <div class="pieza-formulario">
+        <label class="input-label" for="username">Usuario
+          <input class="input" type="text" id="username" name="username" required autocomplete="username" />
+        </label>
+        <label class="input-label" for="password">Contraseña
+          <input class="input" type="password" id="password" name="password" required autocomplete="current-password" />
+        </label>
+      </div>
+      <div th:if="${param.error}" class="validacion">
+        <p>Usuario o contraseña incorrectos.</p>
+      </div>
+      <div th:if="${param.logout}" class="validacion">
+        <p>Has cerrado sesión correctamente.</p>
+      </div>
+      <button type="submit" class="boton-submit">Ingresar</button>
+    </form>
+  </body>
+</html>
