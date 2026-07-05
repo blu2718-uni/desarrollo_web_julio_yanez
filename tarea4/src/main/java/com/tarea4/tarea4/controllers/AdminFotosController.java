@@ -1,6 +1,7 @@
 package com.tarea4.tarea4.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,8 @@ public class AdminFotosController {
     }
 
     @GetMapping("/")
-    public String listar(Model model) {
+    public String listar(Model model, Authentication auth) {
+        model.addAttribute("auth", auth);
         model.addAttribute("fotos", fotoService.listarTodas());
         return "admin-fotos";
     }
