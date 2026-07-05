@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Administrador de Fotos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin-fotos.css}" />
+  </head>
+  <body>
+    <div class="a-index-container">
+      <a class="a-index-universal" href="#" onclick="window.location.href = window.location.protocol + '//' + window.location.hostname + ':5000/'; return false;">Regresar a la página principal</a>
+      <span class="a-index-universal" th:if="${auth != null and auth.name != 'anonymousUser'}" th:text="${' · ' + auth.name}"></span>
+    </div>
+    <h1 class="titulo">Administrador de Fotos</h1>
+    <p class="subtitulo">Galería de fotografías ingresadas, ordenadas de la más reciente a la más antigua.</p>
+
+    <div th:if="${success}" class="mensaje-flotante exito" th:text="${success}"></div>
+    <div th:if="${error}" class="mensaje-flotante error" th:text="${error}"></div>
+
+    <div th:if="${#lists.isEmpty(fotos)}" class="admin-fotos-vacio">
+      No hay fotografías registradas.
+    </div>
+
+    <div class="admin-fotos-grid">
+      <div th:each="foto : ${fotos}" th:classappend="${foto.eliminada} ? 'eliminada' : ''" class="admin-foto-card">
+        <img class="admin-foto-imagen" th:src="@{'/uploads/' + ${foto.nombreArchivo}}" th:alt="${'Foto ' + foto.id}" />
+        <dl class="admin-foto-info">
+          <dt>ID</dt>
+          <dd th:text="${foto.id}"></dd>
+          <dt>Fecha de registro del miembro</dt>
+          <dd th:text="${#temporals.format(foto.actividad.miembro.fechaRegistro, 'dd-MM-yyyy HH:mm')}"></dd>
+          <dt>Comuna</dt>
+          <dd th:text="${foto.actividad.miembro.comuna.nombre}"></dd>
+          <dt>Email del miembro</dt>
+          <dd th:text="${foto.actividad.miembro.email}"></dd>
+        </dl>
+        <div th:if="${foto.eliminada}" class="admin-foto-badge">Eliminada</div>
+        <div class="admin-foto-acciones" th:unless="${foto.eliminada}">
+          <button type="button" class="btn-eliminar"
+                  th:attr="data-foto-id=${foto.id}"
+                  onclick="abrirDialogoEliminar(this.dataset.fotoId)">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <dialog id="dialog-eliminar" class="dialog-evaluar">
+      <form id="form-eliminar" class="form-evaluar" method="post" action="">
+        <h2 class="dialog-titulo">Eliminar foto</h2>
+        <p class="dialog-mensaje">Ingresa el motivo de la eliminación (5 a 200 caracteres).</p>
+        <label class="input-label" for="motivo">Motivo</label>
+        <textarea class="input" id="motivo" name="motivo" rows="3" minlength="5" maxlength="200" required></textarea>
+        <p id="dialog-error" class="dialog-error" hidden></p>
+        <div class="dialog-botones">
+          <button type="button" id="dialog-cancelar" class="boton-cancelar">Cancelar</button>
+          <button type="submit" id="dialog-confirmar" class="boton-confirmar">Eliminar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script th:src="@{/js/admin-fotos.js}"></script>
+  </body>
+</html>

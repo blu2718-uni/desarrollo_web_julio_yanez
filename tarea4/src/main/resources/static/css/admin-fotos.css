@@ -1,0 +1,117 @@
+.admin-fotos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 32px;
+    max-width: 1400px;
+    margin: 32px auto;
+    padding: 0 32px;
+}
+
+.admin-foto-card {
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 4px 24px #1f293717;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.admin-foto-imagen {
+    width: 100%;
+    height: 256px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #F3F4F6;
+}
+
+.admin-foto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    font-family: 'Inter';
+    font-size: 14px;
+}
+
+.admin-foto-info dt {
+    color: #6B7280;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+.admin-foto-info dd {
+    margin: 0;
+    color: #1F2937;
+    word-break: break-all;
+}
+
+.admin-foto-card.eliminada {
+    opacity: 0.55;
+}
+
+.admin-foto-badge {
+    display: inline-block;
+    background-color: #FEE2E2;
+    color: #B91C1C;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+.admin-foto-acciones {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 8px;
+    border-top: 1px solid #E5E7EB;
+}
+
+.btn-eliminar {
+    font-family: 'Inter';
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid #B91C1C;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    color: #B91C1C;
+}
+
+.btn-eliminar:hover {
+    background-color: #B91C1C;
+    color: #FFFFFF;
+}
+
+.admin-fotos-vacio {
+    font-family: 'Inter';
+    font-size: 16px;
+    color: #6B7280;
+    text-align: center;
+    padding: 64px 0;
+}
+
+.mensaje-flotante {
+    max-width: 512px;
+    margin: 0 auto 32px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-family: 'Inter';
+    font-size: 16px;
+    text-align: center;
+}
+
+.mensaje-flotante.exito {
+    background-color: #ECFDF5;
+    color: #065F46;
+    border-left: 4px solid #10B981;
+}
+
+.mensaje-flotante.error {
+    background-color: #FEF2F2;
+    color: #991B1B;
+    border-left: 4px solid #EF4444;
+}
