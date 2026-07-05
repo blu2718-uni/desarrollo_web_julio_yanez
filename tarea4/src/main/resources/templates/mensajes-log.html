@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mensajes de Log</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="a-index-container">
+      <a class="a-index-universal" href="#" onclick="window.location.href = window.location.protocol + '//' + window.location.hostname + ':5000/'; return false;">Regresar a la página principal</a>
+      <span class="a-index-universal" th:if="${auth != null and auth.name != 'anonymousUser'}" th:text="${' · ' + auth.name}"></span>
+    </div>
+    <h1 class="titulo">Mensajes de Log</h1>
+    <p class="subtitulo">Registro de acciones realizadas en el sistema, desde la más reciente a la más antigua.</p>
+
+    <div th:if="${#lists.isEmpty(logs)}" class="admin-fotos-vacio">
+      No hay mensajes en el log.
+    </div>
+
+    <table th:unless="${#lists.isEmpty(logs)}" class="tabla">
+      <thead class="encabezado-tablas">
+        <tr>
+          <th>ID</th>
+          <th>Fecha</th>
+          <th>Mensaje</th>
+        </tr>
+      </thead>
+      <tbody class="datos-tablas">
+        <tr th:each="log : ${logs}">
+          <td th:text="${log.id}"></td>
+          <td th:text="${#temporals.format(log.fecha, 'dd-MM-yyyy HH:mm:ss')}"></td>
+          <td th:text="${log.mensaje}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
