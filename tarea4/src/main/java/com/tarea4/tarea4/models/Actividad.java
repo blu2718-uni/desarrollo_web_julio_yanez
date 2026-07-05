@@ -49,6 +49,9 @@ public class Actividad {
     @OneToMany(mappedBy = "actividad", fetch = FetchType.LAZY)
     private List<Nota> notas;
 
+    @OneToMany(mappedBy = "actividad", fetch = FetchType.LAZY)
+    private List<Foto> fotos;
+
     public Actividad() {
     }
 
@@ -90,5 +93,9 @@ public class Actividad {
 
     public List<Nota> getNotas() {
         return notas;
+    }
+
+    public List<Foto> getFotos() {
+        return fotos;
     }
 }
