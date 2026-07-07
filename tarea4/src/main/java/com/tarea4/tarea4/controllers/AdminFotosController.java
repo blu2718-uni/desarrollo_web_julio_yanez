@@ -24,7 +24,7 @@ public class AdminFotosController {
         this.fotoService = fotoService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String listar(Model model, Authentication auth) {
         model.addAttribute("auth", auth);
         model.addAttribute("fotos", fotoService.listarTodas());
@@ -37,7 +37,7 @@ public class AdminFotosController {
                            RedirectAttributes redirectAttributes) {
         if (motivo == null || motivo.trim().length() < 5 || motivo.length() > 200) {
             redirectAttributes.addFlashAttribute("error", "El motivo debe tener entre 5 y 200 caracteres.");
-            return "redirect:/admin-fotos/";
+            return "redirect:/admin-fotos";
         }
         try {
             fotoService.eliminarFoto(id, motivo);
@@ -45,6 +45,6 @@ public class AdminFotosController {
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
-        return "redirect:/admin-fotos/";
+        return "redirect:/admin-fotos";
     }
 }

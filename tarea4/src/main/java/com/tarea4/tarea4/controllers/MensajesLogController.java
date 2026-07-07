@@ -23,7 +23,7 @@ public class MensajesLogController {
         this.logRepository = logRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String listar(Model model, Authentication auth) {
         List<Log> logs = logRepository.findAllByOrderByFechaDesc();
         model.addAttribute("auth", auth);
