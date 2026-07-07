@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Estadísticas de Fotos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <div class="a-index-container">
+      <a class="a-index-universal" href="#" onclick="window.location.href = window.location.protocol + '//' + window.location.hostname + ':5000/'; return false;">Regresar a la página principal</a>
+    </div>
+    <h1 class="titulo">Estadísticas de Fotos</h1>
+    <p class="subtitulo">Total de fotos vigentes y eliminadas en la plataforma.</p>
+
+    <div id="grafico-fotos"></div>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script th:src="@{/js/estadistica-fotos.js}"></script>
+  </body>
+</html>
