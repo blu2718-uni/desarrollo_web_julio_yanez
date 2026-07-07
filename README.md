@@ -8,6 +8,13 @@ Crear la tabla `nota` (una vez):
 mysql -u cc5002 -p tarea2 < database/tabla-nota.sql
 ```
 
+Para Tarea 5, se agregó la columna `eliminada` a `foto` y se crearon las tablas
+`users` y `log` (una vez), para ello se ejecutó:
+
+```
+mysql -u cc5002 -p tarea2 < database/modificaciones-base-datos.sql
+```
+
 En cuanto a decisiones:
 
 - `ddl-auto=none`: Hibernate solo lee las tablas existentes, no altera el
@@ -24,5 +31,13 @@ En cuanto a decisiones:
   URLs se computan con `window.location.hostname` para conservar el host
   (solo cambia el puerto), de modo que funcionan tanto en `localhost` como
   en host remoto.
+- Spring Security: form login con página `/login` custom,
+  autorización por URL y `@PreAuthorize` en los controllers, CSRF off para
+  simplificar los POST. Patrón del auxiliar 11.
+- usuarios: tabla `users` con password BCrypt, sembrados al
+  arrancar desde `application.properties` vía `DataInitializer` (env vars
+  `APP_ADMIN_USERNAME/PASSWORD` y `APP_AUDITOR_USERNAME/PASSWORD`
+  sobreescriben los defaults).
+- gráficos: Highcharts desde CDN, misma paleta y tipografías
 
 El proyecto de springboot corre en el puerto 8081 por que el puerto 8080 hacía conflicto con un servicio que tenía en el entorno en que hice la tarea.
