@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tarea4.tarea4.models.FotoRepository;
 import com.tarea4.tarea4.services.BuscadorService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -18,9 +19,11 @@ import jakarta.persistence.EntityNotFoundException;
 public class ApiController {
 
     private final BuscadorService buscadorService;
+    private final FotoRepository fotoRepository;
 
-    public ApiController(BuscadorService buscadorService) {
+    public ApiController(BuscadorService buscadorService, FotoRepository fotoRepository) {
         this.buscadorService = buscadorService;
+        this.fotoRepository = fotoRepository;
     }
 
     @GetMapping("/api/actividades")
@@ -41,5 +44,12 @@ public class ApiController {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/api/estadisticas-fotos")
+    public Map<String, Long> estadisticasFotos() {
+        long vigentes = fotoRepository.countByEliminada(false);
+        long eliminadas = fotoRepository.countByEliminada(true);
+        return Map.of("vigentes", vigentes, "eliminadas", eliminadas);
     }
 }
