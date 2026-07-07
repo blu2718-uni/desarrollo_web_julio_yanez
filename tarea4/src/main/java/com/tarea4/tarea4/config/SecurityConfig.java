@@ -62,7 +62,7 @@ public class SecurityConfig {
     }
 
     public AuthenticationSuccessHandler successHandler() {
-        return ((_, response, _) -> {
+        return ((request, response, authentication) -> {
             response.sendRedirect("/");
         });
     }
